@@ -7,5 +7,6 @@ export interface Category {
 
 export interface CategoryDoc extends Category {
   id?: string;
-  createdAt: Timestamp;
+  created_at: Timestamp;
+  modified_at: Timestamp;
 }
