@@ -1,4 +1,4 @@
-import { collection, CollectionReference, getDocs, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, CollectionReference, getDocs, runTransaction, doc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { Category, CategoryDoc } from '../types/Category';
 
@@ -37,19 +37,22 @@ export const addCategory = async (category: Category) => {
       throw new Error('Category description is required');
     }
 
-    const categories = await getCategories();
-    const foundCategory = categories?.find((item) => item.name === category.name);
+    await runTransaction(db, async (transaction) => {
+      const categoryRef = doc(db, 'categories', category.name);
+      const categoryDoc = await transaction.get(categoryRef);
 
-    if (foundCategory) {
-      throw new Error('Category already exists');
-    } else {
-      const categoryRef = await addDoc(categoriesCol, {
+      if (categoryDoc.exists()) {
+        throw 'Document already exists';
+      }
+
+      transaction.set(categoryRef, {
         ...category,
         created_at: serverTimestamp(),
         modified_at: serverTimestamp(),
       });
-      console.log('Document written with ID: ', categoryRef.id);
-    }
+    });
+
+    console.log('Document written with name: ', category.name);
   } catch (error) {
     console.error('Error adding document: ', error);
   }
