@@ -4,6 +4,7 @@ import Head from 'next/head';
 
 // UI imports
 import Header from '../components/Header';
+import HomePage from '../components/HomePage';
 import Footer from '../components/Footer';
 
 const Home: NextPage = () => {
@@ -17,7 +18,7 @@ const Home: NextPage = () => {
 
       <Header />
       <main>
-        <h1>onpoint ecommerce</h1>
+        <HomePage />
       </main>
       <Footer />
     </>
