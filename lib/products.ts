@@ -1,4 +1,4 @@
-import { collection, CollectionReference, getDocs, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, CollectionReference, doc, getDocs, addDoc, serverTimestamp, getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { Product, ProductDoc } from '../types/Product';
 
@@ -27,6 +27,20 @@ export const getProducts = async () => {
   } catch (error) {
     console.error('Error getting documents: ', error);
   }
+};
+
+export const getProduct = async (id: string) => {
+  const docRef = doc(db, 'products', id);
+  const docSnap = await getDoc(docRef);
+
+  if (!docSnap.exists()) {
+    throw new Error('Product not found');
+  }
+
+  return {
+    ...docSnap.data(),
+    id: docSnap.id,
+  };
 };
 
 export const addProduct = async (product: Product) => {
