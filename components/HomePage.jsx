@@ -1,7 +1,7 @@
-import styles from '../styles/HomePage.module.css';
-import React, { useEffect, useState } from 'react';
-import { getProducts } from '../lib/products';
-import ProductCard from '../components/ProductCard';
+import styles from "../styles/HomePage.module.css";
+import React, { useEffect, useState } from "react";
+import { getProducts } from "../lib/products";
+import ProductCard from "../components/ProductCard";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
