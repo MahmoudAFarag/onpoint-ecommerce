@@ -23,7 +23,7 @@ export const getCategories = async () => {
 
     return categories;
   } catch (error) {
-    console.error('Error getting documents: ', error);
+    console.error('Error getting categories: ', error);
   }
 };
 
@@ -42,7 +42,7 @@ export const addCategory = async (category: Category) => {
       const categoryDoc = await transaction.get(categoryRef);
 
       if (categoryDoc.exists()) {
-        throw 'Document already exists';
+        throw 'Category already exists';
       }
 
       transaction.set(categoryRef, {
@@ -52,8 +52,8 @@ export const addCategory = async (category: Category) => {
       });
     });
 
-    console.log('Document written with name: ', category.name);
+    console.log('Category written with name: ', category.name);
   } catch (error) {
-    console.error('Error adding document: ', error);
+    console.error('Error adding category: ', error);
   }
 };
