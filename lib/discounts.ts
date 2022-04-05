@@ -1,4 +1,4 @@
-import { collection, CollectionReference, addDoc, getDocs, serverTimestamp } from 'firebase/firestore';
+import { collection, CollectionReference, addDoc, runTransaction, doc, getDocs, serverTimestamp } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { Discount, DiscountDoc } from '../types/Discount';
 
@@ -17,7 +17,7 @@ const validateDiscount = (discount: Discount) => {
     throw new Error('Discount percent is required');
   }
 
-  if (!discount.active) {
+  if (typeof discount.active !== 'boolean') {
     throw new Error('Discount active is required');
   }
 };
@@ -49,21 +49,23 @@ export const addDiscount = async (discount: Discount) => {
   try {
     validateDiscount(discount);
 
-    const discounts = await getDiscounts();
-    const foundDiscount = discounts?.find((item) => item.name === discount.name);
+    await runTransaction(db, async (transaction) => {
+      const discountRef = doc(db, 'discounts', discount.name);
+      const discountDoc = await transaction.get(discountRef);
 
-    if (foundDiscount) {
-      throw new Error('Discount already exists');
-    } else {
-      const discountRef = await addDoc(discountsCol, {
+      if (discountDoc.exists()) {
+        throw 'Discount already exists';
+      }
+
+      transaction.set(discountRef, {
         ...discount,
         created_at: serverTimestamp(),
         modified_at: serverTimestamp(),
       });
+    });
 
-      console.log('Document written with ID: ', discountRef.id);
-    }
+    console.log('Discount written with ID: ', discount.name);
   } catch (error) {
-    console.error('Error adding document: ', error);
+    console.error('Error adding discount: ', error);
   }
 };
