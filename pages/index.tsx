@@ -17,7 +17,7 @@ const Home: NextPage = () => {
 
       <Header />
       <main>
-        <h1>onpoint ecommerce</h1>
+        {/* <h1>onpoint ecommerce</h1> */}
       </main>
       <Footer />
     </>
