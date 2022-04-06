@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { getProducts } from '../lib/products';
+import { useState } from 'react';
 import ProductCard from './ProductCard';
 import Pagination from './Pagination';
+import useStore from '../store/useStore';
 
 const HomePage = () => {
-  const [products, setProducts] = useState([]);
+  const products = useStore((state) => state.products);
   const [currentPage, setCurrentPage] = useState(1);
 
   const paginatedProducts = products.slice((currentPage - 1) * 6, currentPage * 6);
-
-  useEffect(() => {
-    getProducts().then((data) => setProducts(data));
-  }, []);
 
   if (products.length === 0) {
     return <h1>Loading</h1>;
