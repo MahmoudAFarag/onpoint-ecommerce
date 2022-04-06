@@ -1,0 +1,8 @@
+.header {
+  display: flex;
+  justify-content: center ;
+}
+
+.header__text {
+  color: blue;
+}

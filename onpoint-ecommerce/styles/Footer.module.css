@@ -1,0 +1,8 @@
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
+.footer__text {
+  color: red;
+}
