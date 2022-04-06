@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getProducts } from '../lib/products';
-import ProductCard from '../components/ProductCard';
-import Pagination from '../components/Pagination';
+import ProductCard from './ProductCard';
+import Pagination from './Pagination';
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
