@@ -1,103 +1,101 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+  background-color: rgb(43, 46, 53);
+  height: 150px;
+  width: 100%;
+}
+.pay_methode {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: 25px;
+}
 
-.footer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.pay_methode a {
+  color: rgb(238, 238, 238);
+  transition: 0.4s;
+}
+
+.pay_methode a:hover {
+  transform: scale(1.3);
+}
+
+.footer .follow {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer .follow span:first-child {
+  font-size: 15px;
+  color: rgb(238, 238, 238);
+}
+
+.footer .follow .social {
+  display: flex;
+  text-align: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-size: 15px;
+}
+
+.footer .follow .social a {
+  padding: 6px 8px;
+  font-size: 15px;
+  border-radius: 50%;
+  color: rgb(238, 238, 238);
+  transition: 0.4s;
+}
+
+.footer .follow .social a:hover {
+  transform: scale(1.3);
+}
+
+.footer .follow .social .fb {
+  background-color: rgb(24, 119, 242);
+}
+
+.footer .follow .social .tw {
+  background-color: rgb(29, 161, 242);
+}
+
+.footer .follow .social .ln {
+  background-color: rgb(10, 102, 194);
+}
+
+.footer .follow .social .ins {
+  background-color: rgb(195, 42, 163);
+}
+
+.footer .follow .env {
+  color: rgb(255, 204, 1);
+  font-size: 15px;
+  text-align: right;
+  transition: 0.4s;
+}
+.footer .follow .env:hover {
+  letter-spacing: 1px;
+}
+
+@media (max-width: 500px) {
+  .footer {
+    justify-content: center;
+    height: 200px;
     padding: 50px;
-    background-color: rgb(43, 46, 53);
-    height: 150px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-
-    
-}
-.pay_methode{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    font-size: 25px;
-}
-.pay_methode a{
-    color: var(--alt-color-3);
-    transition: var(--main-transition);
-
-}
-.pay_methode a:hover{
-    transform: scale(1.3);
-}
-.footer .follow{
-    display: flex;
-    flex-direction: column;
+  }
+  .footer .pay_methode {
+    position: relative;
+    top: -50px;
+  }
+  .footer .follow {
+    position: relative;
+    top: 30px;
+  }
+  .footer .follow .social {
     gap: 10px;
-}
-.footer .follow span:first-child{
-    font-size: 15px;
-    color: var(--alt-color-3);
-}
-.footer .follow .social{
-    display: flex;
-    text-align: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    font-size: 15px;
-}
-.footer .follow .social a{
-    padding: 6px 8px;
-    font-size: 15px;
-    border-radius: 50%;
-    color: var(--alt-color-3);
-    transition: var(--main-transition);
-}
-.footer .follow .social a:hover{
-    transform: scale(1.3);
-}
-
-.footer .follow .social .fb{
-    background-color: rgb(24, 119, 242);
-}
-.footer .follow .social .tw{
-    background-color: rgb(29, 161, 242);
-}
-.footer .follow .social .ln{
-    background-color: rgb(10, 102, 194);
-}
-.footer .follow .social .ins{
-    background-color: rgb(195, 42, 163);
-}
-
-
-
-.footer .follow .env{
-    color: var(--main-color);
-    font-size: 15px;
     text-align: right;
-    transition: var(--main-transition);
-}
-.footer .follow .env:hover{
-    letter-spacing: 1px;
-}    
-
-
-
-
-@media(max-width : 500px){
-    .footer{
-        justify-content: center;
-        height: 200px;
-        padding: 50px;
-    }
-    .footer .pay_methode{
-        position: relative;
-        top: -50px;
-    }
-    .footer .follow{
-        position: relative;
-        top: 30px;
-    }
-    .footer .follow .social{
-        gap: 10px;
-        text-align: right;
-        
-    }
+  }
 }
