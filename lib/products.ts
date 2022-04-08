@@ -2,8 +2,6 @@ import { collection, CollectionReference, doc, getDocs, addDoc, serverTimestamp,
 import { db } from '../config/firebase';
 import { Product, ProductDoc } from '../types/Product';
 
-import { getCategories } from './categories';
-
 const productsCol = collection(db, 'products') as CollectionReference<ProductDoc>;
 
 export const getProducts = async () => {

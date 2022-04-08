@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 @layer components{
-    *{
+    * {
         @apply !font-manrope
     }
 }
+
