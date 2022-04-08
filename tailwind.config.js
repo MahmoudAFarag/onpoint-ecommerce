@@ -11,7 +11,13 @@ module.exports = {
       width: {
         4.5: "1.125rem",
       },
+      maxWidth: {
+        s: "23.4375rem",
+      },
       height: {
+        4.5: "1.125rem",
+      },
+      spacing: {
         4.5: "1.125rem",
       },
       gridColStart: {
@@ -36,8 +42,10 @@ module.exports = {
           dark: "#545860",
         },
         shark: "#2B2E35",
-        supernova: "#FFCC01",
+        supernova: { DEFAULT: "#FFCC01", dark: "#EDBD00" },
         BG: "#F8F8F8",
+        success: "#26B702",
+        error: "#FF7878",
       },
       fontFamily: {
         manrope: ["Manrope", "sans-serif"],
