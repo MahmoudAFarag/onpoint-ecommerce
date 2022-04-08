@@ -2,7 +2,7 @@ interface PaginationProps {
   itemsCount: number;
   pageSize: number;
   currentPage: number;
-  onPageChange: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, page: number) => void;
+  onPageChange: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, page: number) => void;
 }
 
 const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }: PaginationProps) => {
@@ -27,17 +27,17 @@ const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }: Paginat
           <nav className='relative z-0 inline-flex -space-x-px rounded-md shadow-sm' aria-label='Pagination'>
             {pages.map((page) => {
               return (
-                <a
-                  href='#'
+                <button
+                  type='button'
                   {...(page === currentPage ? { 'aria-current': 'page' } : {})}
                   className={`relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 ${
-                    page === currentPage ? 'z-10 border-indigo-500 text-indigo-600' : ''
+                    page === currentPage ? 'z-10 border-gray-500 bg-amber-400 text-black hover:bg-amber-400' : ''
                   }`}
                   key={page}
                   onClick={(e) => onPageChange(e, page)}
                 >
                   {page}
-                </a>
+                </button>
               );
             })}
           </nav>
