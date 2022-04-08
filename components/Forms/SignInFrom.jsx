@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 
 // Components
 import checkEmail from "../../utility/checkEmail";
@@ -73,6 +74,12 @@ const SignInFrom = () => {
               change={setPassword}
               autoComplete="signin-password"
             />
+
+            <Link href="/forgot-password">
+              <a className="text-sm text-shark hover:text-mystic-dark">
+                Forgot Password?
+              </a>
+            </Link>
 
             <SecondaryButton txt="Sign In" disabled={isSubmited} />
           </div>

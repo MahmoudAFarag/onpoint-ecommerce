@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "pLint": "prettier --check .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test": "jest --watchAll --env=jsdom"
   },
   "dependencies": {
     "firebase": "^9.6.10",
@@ -39,5 +40,10 @@
     "hooks": {
       "pre-commit": "npm run format && git add ."
     }
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom/extend-expect"
+    ]
   }
 }
