@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* :root {
+  --main-color: rgb(255, 204, 1);
+  --alt-color-1: rgb(60, 62, 63);
+  --alt-color-2: rgb(228, 232, 241);
+  --alt-color-2: rgb(255, 255, 255);
+  --alt-color-3: rgb(238, 238, 238);
+  --box-shadow: 0 2px 10px rgb(0, 0, 0, 0.1);
+  --main-transition: 0.4s;
+}
+
+html {
+  font-size: 65.5%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+} */
