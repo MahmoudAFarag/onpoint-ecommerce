@@ -1,0 +1,8 @@
+.home__page {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  place-items: center;
+}

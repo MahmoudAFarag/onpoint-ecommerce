@@ -1,0 +1,14 @@
+.product__card {
+  padding: 30px;
+  border: 1px solid #000;
+}
+
+.card__foot {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product__card__button {
+  background-color: gold;
+  padding: 3px 10px;
+}

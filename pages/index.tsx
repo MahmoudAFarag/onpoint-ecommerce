@@ -1,13 +1,30 @@
 // Core imports
-import type { NextPage } from 'next';
+import { useEffect } from 'react';
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
 
 // UI imports
 import Header from '../components/Header';
+import HomePage from '../components/HomePage';
 import Footer from '../components/Footer';
 // import SingleProduct from '../components/SingleProduct';
 
-const Home: NextPage = () => {
+// Utils
+import { getProducts } from '../lib/products';
+import { ProductDoc } from '../types/Product';
+import useStore from '../store/useStore';
+
+interface HomeProps {
+  products: ProductDoc[];
+}
+
+const Home = ({ products }: HomeProps) => {
+  const setProducts = useStore((state) => state.setProducts);
+
+  useEffect(() => {
+    setProducts(products);
+  }, [setProducts, products]);
+
   return (
     <>
       <Head>
@@ -18,11 +35,22 @@ const Home: NextPage = () => {
      {/* <SingleProduct/> */}
       <Header />
       <main>
-        <h1>onpoint ecommerce</h1>
+        <HomePage />
       </main>
       <Footer />
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await getProducts();
+  const products = JSON.parse(JSON.stringify(data));
+
+  return {
+    props: {
+      products,
+    },
+  };
 };
 
 export default Home;
