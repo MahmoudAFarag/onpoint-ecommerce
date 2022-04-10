@@ -1,14 +1,25 @@
-import { collection, CollectionReference, doc, getDocs, addDoc, serverTimestamp, getDoc } from 'firebase/firestore';
+import {
+  collection,
+  CollectionReference,
+  query,
+  doc,
+  getDocs,
+  addDoc,
+  serverTimestamp,
+  getDoc,
+  orderBy,
+  limit,
+} from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { Product, ProductDoc } from '../types/Product';
 
-const productsCol = collection(db, 'products') as CollectionReference<ProductDoc>;
+const productsRef = collection(db, 'products') as CollectionReference<ProductDoc>;
 
 export const getProducts = async () => {
   try {
     const products: ProductDoc[] = [];
 
-    const productsSnapshot = await getDocs(productsCol);
+    const productsSnapshot = await getDocs(productsRef);
 
     productsSnapshot.forEach((product) => {
       products.push({
@@ -21,6 +32,31 @@ export const getProducts = async () => {
       throw new Error('No products found');
     }
 
+    return products;
+  } catch (error) {
+    console.error('Error getting documents: ', error);
+  }
+};
+
+export const getLatestProducts = async (userLimit: number) => {
+  try {
+    const products: ProductDoc[] = [];
+
+    const q = query(productsRef, orderBy('created_at', 'desc'), limit(userLimit));
+    const productsSnapshot = await getDocs(q);
+
+    productsSnapshot.forEach((product) => {
+      products.push({
+        ...product.data(),
+        id: product.id,
+      });
+    });
+
+    if (products.length === 0) {
+      throw new Error('No products found');
+    }
+
+    console.log(products);
     return products;
   } catch (error) {
     console.error('Error getting documents: ', error);
@@ -57,7 +93,7 @@ export const addProduct = async (product: Product) => {
     if (foundProduct) {
       throw new Error('Product already exists');
     } else {
-      const productRef = await addDoc(productsCol, {
+      const productRef = await addDoc(productsRef, {
         ...product,
         created_at: serverTimestamp(),
         modified_at: serverTimestamp(),

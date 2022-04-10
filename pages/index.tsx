@@ -1,29 +1,17 @@
 // Core imports
-import { useEffect } from 'react';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 
-// UI imports
-import Header from '../components/Header';
-import HomePage from '../components/HomePage';
-import Footer from '../components/Footer';
-
 // Utils
-import { getProducts } from '../lib/products';
+import { getLatestProducts, getProducts } from '../lib/products';
 import { ProductDoc } from '../types/Product';
-import useStore from '../store/useStore';
+import ProductCard from '../components/ProductCard';
 
 interface HomeProps {
   products: ProductDoc[];
 }
 
 const Home = ({ products }: HomeProps) => {
-  const setProducts = useStore((state) => state.setProducts);
-
-  useEffect(() => {
-    setProducts(products);
-  }, [setProducts, products]);
-
   return (
     <>
       <Head>
@@ -32,17 +20,21 @@ const Home = ({ products }: HomeProps) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Header />
-      <main>
-        <HomePage />
+      <main className='p-8'>
+        <h1 className='mb-5 ml-4 text-2xl'>Latest Products</h1>
+        <div className='grid justify-items-center gap-8 md:grid-cols-2 lg:grid-cols-3'>
+          {products.map((product) => (
+            <ProductCard product={product} key={product.id} />
+          ))}
+        </div>
       </main>
-      <Footer />
     </>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await getProducts();
+  const data = await getLatestProducts(6);
+
   const products = JSON.parse(JSON.stringify(data));
 
   return {

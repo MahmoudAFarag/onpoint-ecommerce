@@ -10,11 +10,18 @@ export interface ProductSlice {
 const createProductSlice = (set: SetState<MyState>, _get: SetState<MyState>) => {
   return {
     products: [],
-    setProducts: (products: ProductDoc[]) =>
+    setProducts: (products: ProductDoc[]) => {
       set({
         products,
-      }),
+      });
+    },
   };
+  //   addProduct: (product: ProductDoc) => {
+  //     set((state) => {
+  //       return { products: [...state.products, product] };
+  //     });
+  //   },
+  // };
 };
 
 export default createProductSlice;
