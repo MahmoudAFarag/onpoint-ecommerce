@@ -11,7 +11,7 @@ const ProductCard = ({ product }) => {
       </div>
       <div className='mb-3 flex items-center p-3'>
         <h3 className='text-md mr-auto'>${product.price}</h3>
-        <Link href={product.id}>
+        <Link href={`/products/${product.id}`}>
           <a className='bg-amber-400 px-3 py-2'>Buy now</a>
         </Link>
       </div>

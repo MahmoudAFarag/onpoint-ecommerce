@@ -9,9 +9,6 @@ import {
   getDoc,
   orderBy,
   limit,
-  startAfter,
-  QueryDocumentSnapshot,
-  QuerySnapshot,
 } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { Product, ProductDoc } from '../types/Product';
@@ -36,34 +33,6 @@ export const getProducts = async () => {
     }
 
     return products;
-  } catch (error) {
-    console.error('Error getting documents: ', error);
-  }
-};
-
-export const getPaginatedProducts = async (nextDoc?: any) => {
-  try {
-    const products: ProductDoc[] = [];
-
-    const q = query(productsRef, orderBy('created_at', 'asc'), limit(6), startAfter(nextDoc ?? 0));
-
-    const productsSnapshot = await getDocs(q);
-
-    productsSnapshot.forEach((product) => {
-      products.push({
-        ...product.data(),
-        id: product.id,
-      });
-    });
-
-    if (products.length === 0) {
-      throw new Error('No products found');
-    }
-
-    return {
-      products,
-      productsSnapshot,
-    };
   } catch (error) {
     console.error('Error getting documents: ', error);
   }

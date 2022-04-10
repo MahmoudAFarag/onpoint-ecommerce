@@ -1,15 +1,16 @@
-import React from 'react';
-
+import Link from 'next/link';
 import { FaSearch, FaShoppingCart, FaBars, FaCircle } from 'react-icons/fa';
 import styles from '../styles/Header.module.css';
 
 const Header = () => {
   return (
     <header className={styles.header}>
-      <a href='#' className={styles.logo}>
+      <div>
         <FaCircle className={styles.circle} />
-        <span>N Point</span>
-      </a>
+        <Link href='/' passHref>
+          <a className={styles.logo}>N Point</a>
+        </Link>
+      </div>
 
       <form action='' className={styles.search_form}>
         <label htmlFor='search-box'>
@@ -21,16 +22,16 @@ const Header = () => {
         </label>
       </form>
       <nav className={styles.nav}>
-        <a href='#'>Sign In</a>
-        <a href='#'>Sign Up</a>
+        <Link href='#'>Sign In</Link>
+        <Link href='#'>Sign Up</Link>
       </nav>
       <div className={styles.sign_dev}>
-        <a href='#' className={styles.sign}>
+        <Link href='#' className={styles.sign}>
           Sign In
-        </a>
-        <a href='#' className={styles.sign}>
+        </Link>
+        <Link href='#' className={styles.sign}>
           Sign Up
-        </a>
+        </Link>
       </div>
       <div className={styles.icons}>
         <div id={styles.menu_btn}>
