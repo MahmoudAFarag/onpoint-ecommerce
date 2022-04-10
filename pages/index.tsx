@@ -1,5 +1,6 @@
 // Core imports
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
 import Head from 'next/head';
 
 // Utils
@@ -26,6 +27,11 @@ const Home = ({ products }: HomeProps) => {
           {products.map((product) => (
             <ProductCard product={product} key={product.id} />
           ))}
+        </div>
+        <div className='mt-8 flex justify-center'>
+          <Link href='/products' passHref>
+            <button className='rounded bg-amber-400 py-2 px-4 font-bold text-black hover:bg-amber-300'>See all products</button>
+          </Link>
         </div>
       </main>
     </>
