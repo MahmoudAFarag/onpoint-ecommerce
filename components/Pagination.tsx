@@ -1,12 +1,13 @@
 interface PaginationProps {
   itemsCount: number;
   pageSize: number;
-  currentPage: number;
+  currentPage?: number;
   onPageChange: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, page: number) => void;
 }
 
 const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }: PaginationProps) => {
-  const pageCount = Math.ceil(itemsCount / pageSize);
+  // const pageCount = Math.ceil(itemsCount / pageSize);
+  const pageCount = 4;
   const pages = Array.from({ length: pageCount }, (_, i) => i + 1);
 
   return (
