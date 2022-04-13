@@ -3,7 +3,9 @@ import Link from 'next/link';
 
 const ProductCard = ({ product }) => {
   return (
-    <div className='mx-2 max-w-sm overflow-hidden rounded-md bg-white shadow-md'>
+    
+    <Link href={{pathname:'/singleproduct', query:{object:JSON.stringify(product)}}}>
+    <div className='mx-2 max-w-sm overflow-hidden ' >
       <Image src={product.image} alt='product image' width={400} height={300} />
       <div className='px-3'>
         <h3 className='text-xl'>{product.name}</h3>
@@ -16,6 +18,7 @@ const ProductCard = ({ product }) => {
         </Link>
       </div>
     </div>
+    </Link>
   );
 };
 
