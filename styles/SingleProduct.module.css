@@ -1,18 +1,29 @@
 .center {
-    text-align: center;
+    padding-left:  200px; ;
+  }
+  .main{
+    padding-left: 20px;
+  }
+  .main1{
+    padding-left: 70px;
   }
   .singleproduct {
     width: 100%;
     max-width: 900px;
     height: 100%;
     padding: 10px;
-    /* display: flex; */
+    /* display: flex;  */
      margin: 0 auto;
-    border: 4px solid #4bc318;
+    border: 4px solid #eef2ed;
     /* border-radius: 3px;
     cursor: pointer; */
     position: center;
   } 
+.buttontwo{
+  display:flex;
+  padding-left: 300px;
+}
+
   .singleproduct_cart{
     padding:30px;
     display:flex;
@@ -36,8 +47,18 @@
     
     
   } 
+  .avatar1 {
+    height: 75px;
+    margin: 10px;
+    
+    
+  } 
+  .photos{
+display: flex;
+
+  }
   .avatar_product{
-    height: 300px;
+    height: 250px;
     /* border-radius: 25px; */
     margin: 01px;
     position: relative;
@@ -48,14 +69,33 @@
 
   .button {
     text-transform: uppercase;
-    margin: 50px ;
+    margin: 10px ;
     padding: 10px;
     border: 1px solid rgba(16, 17, 2, 0.29);
     cursor: pointer;
-    background: rgb(178, 244, 47);
-    font-size: 16px;
-    width: 250px;
+    background: rgb(236, 171, 20);
+    font-size: 10px;
+    width: 100px;
     /* text-align: center; */
-    
+    text-align: center;
     display: flex;
+    padding-left: 30px;
+  }
+  .button1 {
+    text-transform: uppercase;
+    margin: 10px ;
+    padding: 10px;
+    border: 1px solid rgba(16, 17, 2, 0.29);
+    cursor: pointer;
+    background: rgb(28, 23, 11);
+    color:#eef2ed;
+    font-size: 10px;
+    width: 100px;
+    /* text-align: center; */
+    text-align: center;
+    display: flex;
+    padding-left: 20px;
+  }
+  .tex{
+    color:rgb(249, 230, 11);
   }

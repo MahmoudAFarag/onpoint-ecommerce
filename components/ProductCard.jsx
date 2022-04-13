@@ -4,7 +4,7 @@ import Link from 'next/link';
 const ProductCard = ({ product }) => {
   return (
     
-    <Link href={{pathname:'/singleproduct', query:{object:JSON.stringify(product)}}}>
+    <Link href={{pathname:'/unauthsingleproduct', query:{object:JSON.stringify(product)}}}>
     <div className='mx-2 max-w-sm overflow-hidden ' >
       <Image src={product.image} alt='product image' width={400} height={300} />
       <div className='px-3'>
