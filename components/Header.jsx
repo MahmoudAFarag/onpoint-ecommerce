@@ -3,17 +3,6 @@ import React, {useState} from 'react';
 import { FaSearch, FaShoppingCart, FaBars, FaCircle } from 'react-icons/fa';
 import styles from '../styles/Header.module.css';
 
-// const [isOpen, setOpen] = useState(false);
-// const menuToggle = () => {
-//   isOpen ? setOpen('') : setOpen(styles.hidden);
-// }
-// function smallNavBar(){
-//   const [active, setActive] = useState('navBar');
-//   const menuToggle = () => {
-//     active === 'navBar' ? setActive('navBar navActive') : setActive('navBar');
-//   } 
-// };
-
 
 
 const Header = () => {
