@@ -28,20 +28,20 @@ const Footer = () => {
       <div className={styles.follow}>
         <span>Follow Us</span>
         <div className={styles.social}>
-          <a href='#' className={styles.fb}>
+          <a href='https://facebook.com' className={styles.fb}>
             <FaFacebookF />
           </a>
-          <a href='#' className={styles.tw}>
+          <a href='https://twitter.com' className={styles.tw}>
             <FaTwitter />
           </a>
-          <a href='#' className={styles.ln}>
+          <a href='https://linkedin.com' className={styles.ln}>
             <FaLinkedin />
           </a>
-          <a href='#' className={styles.ins}>
+          <a href='https://instagram.com' className={styles.ins}>
             <FaInstagram />
           </a>
         </div>
-        <a href='#Gmail.com' className={styles.env}>
+        <a href='https://Gmail.com' className={styles.env}>
           <FaEnvelope /> Mail Us
         </a>
       </div>

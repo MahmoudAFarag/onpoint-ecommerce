@@ -43,7 +43,7 @@
 }
 
 .footer .follow .social a {
-  padding: 6px 8px;
+  padding: 6px;
   font-size: 15px;
   border-radius: 50%;
   color: rgb(238, 238, 238);
@@ -79,6 +79,17 @@
 .footer .follow .env:hover {
   letter-spacing: 1px;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 500px) {
   .footer {
