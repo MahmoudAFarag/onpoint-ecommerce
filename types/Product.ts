@@ -6,6 +6,7 @@ export interface Product {
   price: number;
   image: string;
   category: string;
+  quantity: number;
   discount: string;
 }
 
@@ -13,4 +14,8 @@ export interface ProductDoc extends Product {
   id?: string;
   created_at: Timestamp;
   modified_at: Timestamp;
+}
+
+export interface ProductCart extends Product, ProductDoc {
+  cartQuantity: number;
 }
