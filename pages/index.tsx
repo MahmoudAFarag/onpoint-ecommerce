@@ -34,9 +34,9 @@ const Home = ({ products }: HomeProps) => {
       </Head>
      {/* <SingleProduct/> */}
       <Header />
-      <main>
+      {/* <main> */}
         <HomePage />
-      </main>
+      {/* </main> */}
       <Footer />
     </>
   );
