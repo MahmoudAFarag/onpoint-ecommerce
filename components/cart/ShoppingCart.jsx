@@ -5,14 +5,15 @@ import React from 'react';
 import style from '../../styles/ShoppingCart.module.css';
 
 // Stores
-import useCartStore from '../../store/CartStore';
+import useStore from '../../store/useStore';
+// import useCartStore from '../../store/CartStore';
 
 // Components
-import Product from './Product';
+import CartItem from './CartItem';
 
 const ShoppingCart = () => {
-  const cartItems = useCartStore((state) => state.cartItems);
-
+  const cartItems = useStore((state) => state.items);
+  console.log(cartItems)
   return (
     <div className={style.cart_home_page}>
       <h1 className={style.cart_title}>ShoppingCart</h1>
@@ -21,7 +22,7 @@ const ShoppingCart = () => {
       )}
       <ul>
         {cartItems.map((cartItem) => (
-          <Product key={cartItem.id} item={cartItem} />
+          <CartItem key={cartItem.id} item={cartItem} />
         ))}
       </ul>
     </div>

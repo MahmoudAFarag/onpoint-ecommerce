@@ -34,3 +34,24 @@
   display: flex;
   padding-left: 20px;
 }
+
+.cart_item {
+  display: flex;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+.cart_item .item_img {
+  width: 20%;
+  margin-right: 10px;
+}
+.cart_item .item_img .img {
+  max-width: 100%;
+}
+.cart_item .item_content {
+  color: #777;
+}
+.cart_item .item_content h3 {
+  color: initial;
+  font-size: 20px;
+  font-weight: bold;
+}
