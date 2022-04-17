@@ -13,7 +13,7 @@ const ProductCard = ({ product }) => {
       </div>
       <div className='mb-3 flex items-center p-3'>
         <h3 className='text-md mr-auto'>${product.price}</h3>
-        <Link href={`/product/${product.id}`}>
+        <Link as ={`/product/${product.id}`}  href={{pathname:'/unauthsingleproduct', query:{object:JSON.stringify(product)}}} >
           <a className='bg-amber-400 px-3 py-2'>More Details</a>
         </Link>
       </div>
