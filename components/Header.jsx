@@ -43,8 +43,16 @@ const Header = () => {
           <FaBars />
         </div>
         <div id={styles.cart_btn}>
+<<<<<<< HEAD
           <FaShoppingCart />
           <span>{cartQuantity}</span>
+=======
+          <Link href='/shopping_cart'>
+            <a>
+              <FaShoppingCart />
+            </a>
+          </Link>
+>>>>>>> createCart
         </div>
       </div>
     </header>
