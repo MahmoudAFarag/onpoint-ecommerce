@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 import { FaSearch, FaShoppingCart, FaBars, FaCircle } from 'react-icons/fa';
 import styles from '../styles/Header.module.css';
@@ -37,7 +38,11 @@ const Header = () => {
           <FaBars />
         </div>
         <div id={styles.cart_btn}>
-          <FaShoppingCart />
+          <Link href='/shopping_cart'>
+            <a>
+              <FaShoppingCart />
+            </a>
+          </Link>
         </div>
       </div>
     </header>

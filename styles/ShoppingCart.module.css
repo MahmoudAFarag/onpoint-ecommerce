@@ -1,0 +1,36 @@
+.cart_home_page {
+  position: relative;
+  min-height: calc(100vh - (96px + 150px));
+  padding: 10px;
+}
+
+.cart_title {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.no_items_at_cart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.add_button {
+  text-transform: uppercase;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid rgba(16, 17, 2, 0.29);
+  cursor: pointer;
+  background: rgb(28, 23, 11);
+  color: #eef2ed;
+  font-size: 10px;
+  width: 100px;
+  /* text-align: center; */
+  text-align: center;
+  display: flex;
+  padding-left: 20px;
+}

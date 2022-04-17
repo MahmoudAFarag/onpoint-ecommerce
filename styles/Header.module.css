@@ -87,6 +87,8 @@
   color: rgb(60, 62, 63);
   cursor: pointer;
   transition: 0.4s;
+  display: grid;
+  place-items: center;
 }
 .header .icons #menu_btn {
   display: none;
