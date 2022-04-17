@@ -6,7 +6,7 @@ import useStore from '../store/useStore';
 import styles from '../styles/Header.module.css';
 
 const Header = () => {
-  const cartQuantity = useStore((state) => state.cartQuantity);
+  const cartTotal = useStore((state) => state.cartTotal);
 
   return (
     <header className={styles.header}>
@@ -46,6 +46,7 @@ const Header = () => {
           <Link href='/shopping_cart'>
             <a>
               <FaShoppingCart />
+              <span>{cartTotal}</span>
             </a>
           </Link>
         </div>
