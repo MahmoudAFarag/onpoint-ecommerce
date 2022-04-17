@@ -7,7 +7,7 @@ export interface ProductSlice {
   setProducts: (products: ProductDoc[]) => void;
 }
 
-const createProductSlice = (set: SetState<MyState>, _get: SetState<MyState>) => {
+const createProductSlice = (set: SetState<MyState>, _get: GetState<MyState>) => {
   return {
     products: [],
     setProducts: (products: ProductDoc[]) =>

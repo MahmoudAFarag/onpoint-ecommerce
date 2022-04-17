@@ -4,7 +4,6 @@ import { GetStaticProps } from 'next';
 import Head from 'next/head';
 
 // UI imports
-import Header from '../components/Header';
 import HomePage from '../components/HomePage';
 import Footer from '../components/Footer';
 // import SingleProduct from '../components/SingleProduct';
@@ -32,11 +31,9 @@ const Home = ({ products }: HomeProps) => {
         <meta name='description' content='E-commerce for selling multi purpose products' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-     {/* <SingleProduct/> */}
-      <Header />
-      <main>
-        <HomePage />
-      </main>
+
+      <HomePage />
+
       <Footer />
     </>
   );

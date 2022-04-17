@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 const ProductCard = ({ product }) => {
   return (
+
     
     
     <div className='mx-2 max-w-sm overflow-hidden ' >
@@ -19,6 +20,7 @@ const ProductCard = ({ product }) => {
       </div>
     </div>
     
+
   );
 };
 
