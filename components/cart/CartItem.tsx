@@ -1,9 +1,14 @@
-import React from 'react';
-import useCartStore from '../../store/CartStore';
+import { ProductCart } from '../../types/Product';
 import styles from '../../styles/ShoppingCart.module.css';
+import useStore from '../../store/useStore';
 
-const CartItem = ({ item }) => {
-  console.log(item);
+interface CartItemProps {
+  item: ProductCart;
+}
+
+const CartItem = ({ item }: CartItemProps) => {
+  const removeItem = useStore((state) => state.removeItem);
+
   return (
     <div className={styles.cart_item}>
       <div className={styles.item_img}>
@@ -13,8 +18,8 @@ const CartItem = ({ item }) => {
         <h3>{item.name}</h3>
         <p>Price : {item.price}</p>
         <p>Category :{item.category} </p>
-        <p>Qty : {item.quantity}</p>
-        <button>Delete</button>
+        <p>Qty : {item.cartQuantity}</p>
+        <button onClick={() => removeItem(item)}>Delete</button>
       </div>
     </div>
   );
