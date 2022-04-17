@@ -20,8 +20,8 @@ const ShoppingCart = () => {
         <h4 className={style.no_items_at_cart}>No Items in Cart</h4>
       )}
       <ul>
-        {cartItems.map((item) => (
-          <Product key={item.id} item={item} />
+        {cartItems.map((cartItem) => (
+          <Product key={cartItem.id} item={cartItem} />
         ))}
       </ul>
     </div>
