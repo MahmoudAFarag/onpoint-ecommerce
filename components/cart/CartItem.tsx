@@ -18,7 +18,9 @@ const CartItem = ({ item }: CartItemProps) => {
         <h3>{item.name}</h3>
         <p>Price : {item.price}</p>
         <p>Category :{item.category} </p>
-        <p>Qty : {item.cartQuantity}</p>
+        <div>
+          <input type='number' value={item.cartQuantity} />
+        </div>
         <button onClick={() => removeItem(item)}>Delete</button>
       </div>
     </div>
