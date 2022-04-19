@@ -35,6 +35,11 @@
   padding-left: 20px;
 }
 
+.disable_after_click {
+  pointer-events: none;
+  opacity: .6;
+}
+
 .cart_item {
   display: flex;
   background-color: #fff;
@@ -46,6 +51,7 @@
 }
 .cart_item .item_img .img {
   max-width: 100%;
+  border-radius: 10px;
 }
 .cart_item .item_content {
   color: #777;
