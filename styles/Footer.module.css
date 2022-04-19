@@ -4,9 +4,10 @@
   align-items: center;
   padding: 50px;
   background-color: rgb(43, 46, 53);
-  height: 150px;
+  max-height: 150px;
   width: 100%;
 }
+
 .pay_methode {
   display: flex;
   flex-wrap: wrap;

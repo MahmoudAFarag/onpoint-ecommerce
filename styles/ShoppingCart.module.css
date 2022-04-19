@@ -1,63 +1,80 @@
-.cart_home_page {
-  position: relative;
-  min-height: calc(100vh - (96px + 150px));
-  padding: 10px;
+.header {
+  max-height: 65vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.cart_title {
-  font-size: 30px;
+.header__title {
+  font-size: 2rem;
   font-weight: bold;
+  margin: 2rem 0;
+}
+
+.header__no_items {
+  font-size: 2rem;
+  margin: 2rem 0;
+}
+
+.cart {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.cart_product {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.cart_product_content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.product_description {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.product_description h3 {
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+.product_description p {
+  font-size: 1rem;
+}
+.product_amount {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.product_amount input {
+  width: 5rem;
+  padding: 0.3rem;
   text-align: center;
+  border: 1px solid #000;
+  border-radius: 5px;
 }
 
-.no_items_at_cart {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: bold;
-  font-size: 20px;
+.product_amount input::-webkit-inner-spin-button,
+.product_amount input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.add_button {
-  text-transform: uppercase;
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid rgba(16, 17, 2, 0.29);
+.product_amount button {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(255, 204, 1);
+  color: #000;
+  font-size: 1rem;
   cursor: pointer;
-  background: rgb(28, 23, 11);
-  color: #eef2ed;
-  font-size: 10px;
-  width: 100px;
-  /* text-align: center; */
-  text-align: center;
-  display: flex;
-  padding-left: 20px;
-}
-
-.disable_after_click {
-  pointer-events: none;
-  opacity: .6;
-}
-
-.cart_item {
-  display: flex;
-  background-color: #fff;
-  margin-bottom: 10px;
-}
-.cart_item .item_img {
-  width: 20%;
-  margin-right: 10px;
-}
-.cart_item .item_img .img {
-  max-width: 100%;
-  border-radius: 10px;
-}
-.cart_item .item_content {
-  color: #777;
-}
-.cart_item .item_content h3 {
-  color: initial;
-  font-size: 20px;
-  font-weight: bold;
 }

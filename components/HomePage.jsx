@@ -3,7 +3,6 @@ import ProductCard from './ProductCard';
 import Pagination from './Pagination';
 import useStore from '../store/useStore';
 
-
 const HomePage = () => {
   const products = useStore((state) => state.products);
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,7 +21,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className='grid justify-items-center gap-8 p-8 md:grid-cols-2 lg:grid-cols-3'>
+      <div className='grid min-h-screen justify-items-center gap-8 p-8 md:grid-cols-2 lg:grid-cols-3'>
         {paginatedProducts.map((product) => {
           return <ProductCard key={product.id} product={product} />;
         })}

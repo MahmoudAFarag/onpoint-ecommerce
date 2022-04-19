@@ -24,9 +24,7 @@ const createCartSlice = (set: SetState<MyState>, _get: GetState<MyState>) => {
             state.items.push(item);
             state.cartTotal += 1;
           } else {
-            state.items[itemsExists].cartQuantity
-              ? state.items[itemsExists].cartQuantity++
-              : (state.items[itemsExists].cartQuantity = 2);
+            state.items[itemsExists].cartQuantity++;
             state.cartTotal += 1;
           }
         })
