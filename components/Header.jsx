@@ -1,15 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-import { FaSearch, FaShoppingCart, FaBars, FaCircle } from 'react-icons/fa';
+import { 
+  FaSearch, 
+  FaShoppingCart, 
+  FaBars, 
+  FaCircle } 
+from 'react-icons/fa';
 import styles from '../styles/Header.module.css';
+import Link from "next/link";
 
 const Header = () => {
+  const [isOpen, setOpen] = useState(false);
+  
   return (
     <header className={styles.header}>
-      <a href='#' className={styles.logo}>
+      <Link href= '/'><a className={styles.logo}>
         <FaCircle className={styles.circle} />
         <span>N Point</span>
-      </a>
+      </a></Link>
 
       <form action='' className={styles.search_form}>
         <label htmlFor='search-box'>
@@ -20,25 +28,24 @@ const Header = () => {
           <input type='submit' value='search' className={styles.btn} />
         </label>
       </form>
-      <nav className={styles.nav}>
-        <a href='#'>Sign In</a>
-        <a href='#'>Sign Up</a>
-      </nav>
-      <div className={styles.sign_dev}>
-        <a href='#' className={styles.sign}>
+      <nav className={ `${isOpen ? "" : "hidden"}` }>
+        <Link  href='/signin'><a className={styles.sign}>
           Sign In
-        </a>
-        <a href='#' className={styles.sign}>
+        </a></Link>
+        <Link href='/signup'><a className={styles.sign}>
           Sign Up
-        </a>
-      </div>
+        </a></Link>
+      </nav>
       <div className={styles.icons}>
-        <div id={styles.menu_btn}>
+        <div id={styles.menu_btn}
+          onClick = {() =>{
+          setOpen(!isOpen);
+        }}>
           <FaBars />
         </div>
-        <div id={styles.cart_btn}>
+        <Link href='/'><a id={styles.cart_btn}>
           <FaShoppingCart />
-        </div>
+        </a></Link>
       </div>
     </header>
   );

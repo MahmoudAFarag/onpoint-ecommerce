@@ -1,0 +1,67 @@
+.contactUs{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+}
+.contactUs .contactForm{
+    
+    padding: 20px;
+    background: rgba(255, 255, 255);
+    width: 400px;
+}
+.contactUs .contactForm h2{
+    font-size: 20px;
+    color: rgb(43, 46, 53);
+    font-weight: bolder;
+    margin-bottom: 10px;
+
+}
+.contactUs .contactForm label{
+    color: #545860;
+    font-size: 17px;
+}
+.contactUs .contactForm input, .contactForm textarea{
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    outline: none;
+    width: 100%;
+    background: rgb(227, 232, 242) ;
+}
+.contactUs .contactForm textarea{
+    height: 120px;
+}
+.contactUs .contactForm .btn{
+    background-color: rgb(255, 204, 1);
+    color: rgb(43, 46, 53);
+    height: 45px;
+    width: 100%;
+    font-size: 17px;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    padding: 0 10px;
+    margin-top: 10px;
+}
+.contactUs .contactForm .btn:hover{
+    background: rgb(237, 189, 0);
+}
+
+
+
+@media (max-width: 500px){
+    .contactUs .contactForm{
+    
+        padding: 20px;
+        background: rgba(255, 255, 255);
+        width: 290px;
+    }
+}
