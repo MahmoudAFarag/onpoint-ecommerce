@@ -5,9 +5,12 @@ import Footer from '../components/Footer'
 const CashOut =()=>{
 
 return(
-<div>   
+<div> 
+    <head>
+<meta name ="viewport" content="width=device-width,initial-scale=1.0"></meta> 
+</head>  
  <Header/>
-  <div >
+  <div  className={styles.photos}>
       <div className={styles.photos}>
              <div>
                                   <h2><strong>CheckOut</strong></h2>

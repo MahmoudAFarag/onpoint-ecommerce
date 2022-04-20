@@ -1,15 +1,65 @@
-import React from "react"
-import styles from '../styles/SingleProduct.module.css';
-import Header from "../components/Header";
-import Footer from '../components/Footer'
-import { withRouter } from "next/router";
+import React, { useEffect, useState } from "react"
+import styles from '../../styles/SingleProduct.module.css';
+import Header from "../../components/Header";
+import Footer from '../../components/Footer';
+import { useRouter } from "next/router";
 import Link from 'next/link';
+import { getProduct } from "../../lib/products";
+import { async } from "@firebase/util";
 
 
-const Product = ({router:{query}}) => {
 
- 
-    const product =JSON.parse(query.object)
+const Product =  () => {
+      
+const [product,setProduct]=useState({})
+    
+      
+        
+  
+    
+
+     
+
+        const router = useRouter();
+
+       
+          const {id} = router.query
+          
+           console.log(id)
+     
+         
+         
+        
+          
+         
+          
+       useEffect(()=>{
+        getProduct(id).then(data=>{
+          console.log(data)
+          setProduct(data)
+      }).catch(err=>{
+          console.log(err)
+      })
+      console.log(id)
+    
+       },[])
+       console.log(product)
+          
+      
+        
+       
+      
+
+      
+
+        
+
+
+      
+       
+      
+         
+    
     return (
   <>
    
@@ -20,7 +70,8 @@ const Product = ({router:{query}}) => {
                                         <img src={product.image} className={styles.avatar_product} />
                                           <div>
                                                   <div>
-                                                     <strong className={styles.singleproduct_info_text}>{product.name}</strong>
+                                                    
+                                                     <strong className={styles.singleproduct_info_text}></strong>
                                                   </div>
                                                   <div>
                                                      <span className={styles.singleproduct_info_text}>Brand: {product.category}</span>
@@ -36,7 +87,7 @@ const Product = ({router:{query}}) => {
                                                                           <br></br>
                                               <div className={styles.buttontwo}>
                                                    <Link href={{pathname:'/unauthcashout'}}>
-                                                     <button className={styles.button} > Buy Now</button>
+                                                     <button className={styles.button} > Buy Now </button>
                                                      </Link>
                                                      <button className={styles.button1} > Add To Cart</button>
                                               </div>
@@ -82,4 +133,4 @@ const Product = ({router:{query}}) => {
          
     );
   };
-  export default withRouter(Product) 
+  export default Product;

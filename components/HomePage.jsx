@@ -9,7 +9,7 @@ const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const paginatedProducts = products.slice((currentPage - 1) * 6, currentPage * 6);
-
+  console.log (paginatedProducts)
   if (products.length === 0) {
     return <h1>Loading</h1>;
   }
