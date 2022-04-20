@@ -31,9 +31,9 @@ const Header = () => {
         <a href='#'>Sign Up</a>
       </nav>
       <div className={styles.sign_dev}>
-        <a href='#' className={styles.sign}>
-          Sign In
-        </a>
+        <Link href='/login'>
+          <a className={styles.sign}>Sign In</a>
+        </Link>
         <a href='#' className={styles.sign}>
           Sign Up
         </a>

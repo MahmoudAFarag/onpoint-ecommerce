@@ -19,16 +19,9 @@ const createCartSlice = (set: SetState<MyState>, _get: GetState<MyState>) => {
     addItem: (item: ProductCart) =>
       set(
         produce((state: MyState) => {
-          const itemsExists = state.items.findIndex((i) => i.id === item.id);
-
-          if (itemsExists === -1) {
-            item.cartQuantity = 1;
-            state.items.push(item);
-            state.cartTotal += 1;
-          } else {
-            state.items[itemsExists].cartQuantity++;
-            state.cartTotal += 1;
-          }
+          item.cartQuantity = 1;
+          state.items.push(item);
+          state.cartTotal += 1;
         })
       ),
 
@@ -45,13 +38,13 @@ const createCartSlice = (set: SetState<MyState>, _get: GetState<MyState>) => {
     increaseQuantity: (item: ProductCart) =>
       set(
         produce((state: MyState) => {
-          const itemsExists = state.items.findIndex((i) => i.id === item.id);
+          const itemIndex = state.items.findIndex((i) => i.id === item.id);
 
-          if (itemsExists === -1) {
+          if (itemIndex === -1) {
             return;
           }
 
-          state.items[itemsExists].cartQuantity++;
+          state.items[itemIndex].cartQuantity++;
           state.cartTotal += 1;
         })
       ),
@@ -59,14 +52,14 @@ const createCartSlice = (set: SetState<MyState>, _get: GetState<MyState>) => {
     decreaseQuantity: (item: ProductCart) =>
       set(
         produce((state: MyState) => {
-          const itemsExists = state.items.findIndex((i) => i.id === item.id);
+          const itemIndex = state.items.findIndex((i) => i.id === item.id);
 
-          if (itemsExists === -1) {
+          if (itemIndex === -1) {
             return;
           }
 
-          if (state.items[itemsExists]?.cartQuantity > 1) {
-            state.items[itemsExists].cartQuantity--;
+          if (state.items[itemIndex]?.cartQuantity > 1) {
+            state.items[itemIndex].cartQuantity--;
             state.cartTotal -= 1;
           }
         })
