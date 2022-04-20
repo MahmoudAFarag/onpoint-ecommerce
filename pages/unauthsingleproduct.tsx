@@ -5,6 +5,8 @@ import { withRouter } from 'next/router';
 import Link from 'next/link';
 import useStore from '../store/useStore';
 import AddToCartButton from '../components/cart/AddToCartButton';
+import { shimmer, toBase64 } from '../lib/image_placeholder';
+import Image from 'next/image';
 
 const Product = ({ router: { query } }) => {
   const addItem = useStore((state) => state.addItem);
@@ -19,7 +21,14 @@ const Product = ({ router: { query } }) => {
     <div>
       <div className={styles.singleproduct}>
         <div className={styles.singleproduct_info}>
-          <img src={product.image} className={styles.avatar_product} />
+          <Image
+            src={product.image}
+            alt='product image'
+            width={250}
+            height={250}
+            placeholder='blur'
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(250, 250))}`}
+          />
           <div>
             <div>
               <strong className={styles.singleproduct_info_text}>{product.name}</strong>

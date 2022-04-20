@@ -8,6 +8,8 @@ export interface CartSlice {
   cartTotal: number;
   addItem: (item: ProductCart) => void;
   removeItem: (item: ProductCart) => void;
+  increaseQuantity: (item: ProductCart) => void;
+  decreaseQuantity: (item: ProductCart) => void;
 }
 
 const createCartSlice = (set: SetState<MyState>, _get: GetState<MyState>) => {
@@ -29,7 +31,18 @@ const createCartSlice = (set: SetState<MyState>, _get: GetState<MyState>) => {
           }
         })
       ),
+
     removeItem: (item: ProductCart) =>
+      set(
+        produce((state: MyState) => {
+          const itemIndex = state.items.findIndex((i) => i.id === item.id);
+
+          state.cartTotal -= state.items[itemIndex].cartQuantity;
+          state.items.splice(itemIndex, 1);
+        })
+      ),
+
+    increaseQuantity: (item: ProductCart) =>
       set(
         produce((state: MyState) => {
           const itemsExists = state.items.findIndex((i) => i.id === item.id);
@@ -38,9 +51,18 @@ const createCartSlice = (set: SetState<MyState>, _get: GetState<MyState>) => {
             return;
           }
 
-          if (state.items[itemsExists]?.cartQuantity === 1) {
-            state.items.splice(itemsExists, 1);
-            state.cartTotal -= 1;
+          state.items[itemsExists].cartQuantity++;
+          state.cartTotal += 1;
+        })
+      ),
+
+    decreaseQuantity: (item: ProductCart) =>
+      set(
+        produce((state: MyState) => {
+          const itemsExists = state.items.findIndex((i) => i.id === item.id);
+
+          if (itemsExists === -1) {
+            return;
           }
 
           if (state.items[itemsExists]?.cartQuantity > 1) {

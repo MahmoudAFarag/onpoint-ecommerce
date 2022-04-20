@@ -27,6 +27,7 @@
   display: flex;
   align-items: center;
   gap: 2.5rem;
+  border-bottom: 1px solid #ccc;
 }
 
 .cart_product_content {
@@ -53,6 +54,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .product_amount input {
@@ -73,8 +75,38 @@
   padding: 0.5rem;
   border: none;
   border-radius: 5px;
-  background-color: rgb(255, 204, 1);
-  color: #000;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.add_button {
+  text-transform: uppercase;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid rgba(16, 17, 2, 0.29);
+  cursor: pointer;
+  background: rgb(28, 23, 11);
+  color: #eef2ed;
+  font-size: 10px;
+  width: 100px;
+  /* text-align: center; */
+  text-align: center;
+  display: flex;
+  padding-left: 20px;
+}
+
+.disable_after_click {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.amount_btn {
+  background-color: rgb(255, 204, 1);
+  color: #000;
+  width: 2.2rem;
+}
+
+.delete_btn {
+  background-color: #888;
+  color: #fff;
 }
