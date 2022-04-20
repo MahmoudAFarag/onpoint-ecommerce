@@ -5,25 +5,16 @@ import Head from 'next/head';
 
 // UI imports
 import HomePage from '../components/HomePage';
-import Footer from '../components/Footer';
-// import SingleProduct from '../components/SingleProduct';
 
 // Utils
 import { getProducts } from '../lib/products';
 import { ProductDoc } from '../types/Product';
-import useStore from '../store/useStore';
 
 interface HomeProps {
   products: ProductDoc[];
 }
 
 const Home = ({ products }: HomeProps) => {
-  const setProducts = useStore((state) => state.setProducts);
-
-  useEffect(() => {
-    setProducts(products);
-  }, [setProducts, products]);
-
   return (
     <>
       <Head>
@@ -32,9 +23,7 @@ const Home = ({ products }: HomeProps) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <HomePage />
-
-      <Footer />
+      <HomePage products={products} />
     </>
   );
 };

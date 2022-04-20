@@ -1,12 +1,28 @@
-import React from 'react';
+import { useEffect } from 'react';
 import Link from 'next/link';
 
 import { FaSearch, FaShoppingCart, FaBars, FaCircle } from 'react-icons/fa';
 import useStore from '../store/useStore';
 import styles from '../styles/Header.module.css';
 
+import { auth } from '../config/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+
 const Header = () => {
   const cartTotal = useStore((state) => state.cartTotal);
+  const currentUser = useStore((state) => state.currentUser);
+  const setCurrentUser = useStore((state) => state.setCurrentUser);
+  const firebaseSignOut = useStore((state) => state.firebaseSignOut);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setCurrentUser(user);
+      } else {
+        setCurrentUser(null);
+      }
+    });
+  }, [setCurrentUser]);
 
   return (
     <header className={styles.header}>
@@ -30,14 +46,26 @@ const Header = () => {
         <a href='#'>Sign In</a>
         <a href='#'>Sign Up</a>
       </nav>
-      <div className={styles.sign_dev}>
-        <Link href='/login'>
-          <a className={styles.sign}>Sign In</a>
-        </Link>
-        <a href='#' className={styles.sign}>
-          Sign Up
-        </a>
-      </div>
+      {currentUser ? (
+        <div className={styles.sign_dev}>
+          <a href='#' className={styles.sign}>
+            {currentUser.displayName}
+          </a>
+
+          <button className={styles.sign} onClick={() => firebaseSignOut()}>
+            Sign Out
+          </button>
+        </div>
+      ) : (
+        <div className={styles.sign_dev}>
+          <Link href='/login'>
+            <a className={styles.sign}>Sign In</a>
+          </Link>
+          <a href='#' className={styles.sign}>
+            Sign Up
+          </a>
+        </div>
+      )}
       <div className={styles.icons}>
         <div id={styles.menu_btn}>
           <FaBars />
