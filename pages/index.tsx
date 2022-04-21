@@ -15,6 +15,10 @@ interface HomeProps {
 }
 
 const Home = ({ products }: HomeProps) => {
+  if (products.length === 0) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <Head>
@@ -30,6 +34,7 @@ const Home = ({ products }: HomeProps) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const data = await getProducts();
+
   const products = JSON.parse(JSON.stringify(data));
 
   return {

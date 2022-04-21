@@ -85,11 +85,10 @@
   padding: 10px;
   border: 1px solid rgba(16, 17, 2, 0.29);
   cursor: pointer;
-  background: rgb(28, 23, 11);
+  background: #0f172a;
   color: #eef2ed;
   font-size: 10px;
   width: 100px;
-  /* text-align: center; */
   text-align: center;
   display: flex;
   padding-left: 20px;

@@ -15,13 +15,17 @@ const Header = () => {
   const firebaseSignOut = useStore((state) => state.firebaseSignOut);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setCurrentUser(user);
       } else {
         setCurrentUser(null);
       }
     });
+
+    return () => {
+      unsubscribe();
+    };
   }, [setCurrentUser]);
 
   return (
