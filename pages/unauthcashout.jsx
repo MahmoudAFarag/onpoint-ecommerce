@@ -1,29 +1,34 @@
 import React from 'react';
 import styles from '../styles/CashOut.module.css';
-import Footer from '../components/Footer';
-const CashOut = () => {
-  return (
-    <div>
-      <div>
-        <div className={styles.photos}>
-          <div>
-            <h2>
-              <strong>CheckOut</strong>
-            </h2>
-            <br></br>
-            <div>
-              <h3>Discount:</h3>
-              <br></br>
-              <span>Totat: $900</span>
-              <br></br>
-              <span>Shipping: $9</span>
-              <br></br>
-              <span>Discount: $200</span>
-              <br></br>
-              <span>Total After Discount: $709</span>
-            </div>
-            <br></br>
-            <div>
+import Header from "../components/Header";
+import Footer from '../components/Footer'
+const CashOut =()=>{
+
+return(
+<div> 
+    <head>
+<meta name ="viewport" content="width=device-width,initial-scale=1.0"></meta> 
+</head>  
+ <Header/>
+  <div  className={styles.photos}>
+      <div className={styles.photos}>
+             <div>
+                                  <h2><strong>CheckOut</strong></h2>
+                                             <br></br>
+                              <div>
+                                        <h3>Discount:</h3>
+                                             <br></br>
+                                     <span>Totat: $900</span>
+                                             <br></br>
+                                    <span>Shipping: $9</span>
+                                             <br></br>
+                                   <span>Discount: $200</span>
+                                             <br></br>
+                                   <span>Total After Discount: $709</span>
+                             </div>
+                                           <br></br>
+                     <div>
+        
               <div>
                 <span>
                   {' '}
@@ -48,7 +53,7 @@ const CashOut = () => {
             <div>
               <div>
                 <h2>DELIVERY ADDRESS:</h2>
-                <address>4517 Washington Ave. Manchester, Kentucky 39495 </address>
+                <h3 className={styles.tex}>Please Sign In And Add Address </h3>
               </div>
               <br></br>
               <div>
@@ -106,10 +111,12 @@ const CashOut = () => {
                   </div>
                 </div>
               </div>
-
-              <button className={styles.button}>
-                <span className={styles.main1}>Confirm</span>
-              </button>
+              <br></br>
+              <div>
+                <h2>
+                  You Need To <span className={styles.tex}>Sign In</span> And Add Address{' '}
+                </h2>
+              </div>
             </div>
           </div>
         </div>
