@@ -5,5 +5,5 @@ const nextConfig = {
     domains: ['picsum.photos', 'via.placeholder.com'],
   },
 };
-
 module.exports = nextConfig;
+

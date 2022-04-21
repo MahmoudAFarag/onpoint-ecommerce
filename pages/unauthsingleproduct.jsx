@@ -13,8 +13,12 @@ const Product = ({ router: { query } }) => {
 
   const product = JSON.parse(query.object);
 
+
+ 
+   
   const handleAddCart = () => {
     addItem(product);
+
   };
 
   return (

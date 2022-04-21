@@ -12,7 +12,7 @@
     max-width: 900px;
     height: 100%;
     padding: 10px;
-    /* display: flex;  */
+     /* display: flex;   */
      margin: 0 auto;
     border: 4px solid #eef2ed;
     /* border-radius: 3px;
@@ -21,8 +21,11 @@
   } 
 .buttontwo{
   display:flex;
-  padding-left: 300px;
+  /* padding-left: 300px; */
+  
+  
 }
+
 
   .singleproduct_cart{
     padding:30px;
@@ -92,8 +95,8 @@ display: flex;
     font-size: 10px;
     width: 100px;
     /* text-align: center; */
-    text-align: center;
-    display: flex;
+    text-align: right ;
+    
     padding-left: 20px;
   }
   .tex{

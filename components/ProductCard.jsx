@@ -12,6 +12,7 @@ const ProductCard = ({ product }) => {
         height={300}
         placeholder='blur'
         blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(400, 300))}`}
+        
       />
       <div className='px-3'>
         <h3 className='text-xl'>{product.name}</h3>
@@ -19,11 +20,10 @@ const ProductCard = ({ product }) => {
       </div>
       <div className='mb-3 flex items-center p-3'>
         <h3 className='text-md mr-auto'>${product.price}</h3>
+
         <Link
-          as={`/product/${product.id}`}
           href={{
-            pathname: '/unauthsingleproduct',
-            query: { object: JSON.stringify(product) },
+            pathname: `/product/${product.id}`
           }}
         >
           <a className='bg-amber-400 px-3 py-2'>More Details</a>

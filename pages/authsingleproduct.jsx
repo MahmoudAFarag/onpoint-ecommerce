@@ -1,28 +1,38 @@
 import React, { useState } from 'react';
 import styles from '../styles/SingleProduct.module.css';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 import { withRouter } from 'next/router';
 
-const Product = ({ router: { query } }) => {
-  const product = JSON.parse(query.object);
-  return (
-    <div>
-      <div className={styles.singleproduct}>
-        <div className={styles.singleproduct_info}>
-          <img src={product.image} className={styles.avatar_product} />
-          <div>
-            <div>
-              <strong className={styles.singleproduct_info_text}>{product.name}</strong>
-            </div>
-            <div>
-              <span className={styles.singleproduct_info_text}>Brand: {product.category}</span>
-            </div>
-            <span className={styles.singleproduct_info_text}>Price:${product.price}</span>
-            <div>
-              <br></br>
-              <div>
-                <strong className={styles.singleproduct_info_text}>About This Item</strong>
-              </div>
+
+
+const Product = ({router:{query}}) => {
+
+  
+    const product =JSON.parse(query.object)
+    return (
+  <div>
+    <meta name ="viewport" content="width=device-width,initial-scale=1.0"></meta>
+         <Header/>
+
+              <div className={styles.singleproduct}>                               
+                                  <div className={styles.singleproduct_info} >
+                                        <img src={product.image} className={styles.avatar_product} />
+                                          <div>
+                                                  <div>
+                                                     <strong className={styles.singleproduct_info_text}>{product.name}</strong>
+                                                  </div>
+                                                  <div>
+                                                     <span className={styles.singleproduct_info_text}>Brand: {product.category}</span>
+                                                  </div>
+                                                     <span className={styles.singleproduct_info_text}>Price:${product.price}</span>
+                                                  <div>
+                                                                          <br></br>
+                                                  <div>
+                                                     <strong className={styles.singleproduct_info_text}>About This Item</strong>
+                                                 </div>       
+                                                   
+                           
               <span className={styles.singleproduct_info_text}>{product.description}</span>
             </div>
             <br></br>
