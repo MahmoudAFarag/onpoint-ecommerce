@@ -10,6 +10,8 @@ import {
   FaCcMastercard,
   FaCreditCard,
 } from 'react-icons/fa';
+import Link from "next/link";
+
 
 const Footer = () => {
   return (
@@ -25,7 +27,7 @@ const Footer = () => {
           <FaCreditCard />
         </a>
       </div>
-      <div className={styles.follow}>
+      <div className={styles.Contact}>
         <span>Follow Us</span>
         <div className={styles.social}>
           <a href='#' className={styles.fb}>
@@ -41,9 +43,14 @@ const Footer = () => {
             <FaInstagram />
           </a>
         </div>
-        <a href='#Gmail.com' className={styles.env}>
-          <FaEnvelope /> Mail Us
-        </a>
+        <div className={styles.contact_btns}>
+          <a href='#Gmail.com' className={styles.env}>
+            Mail Us
+          </a>
+          <Link href='/ContactUs'>
+            <a>Contact Us</a>
+          </Link>
+        </div>
       </div>
     </footer>
   );

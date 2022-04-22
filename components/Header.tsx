@@ -1,15 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { FaSearch, FaShoppingCart, FaBars, FaCircle } from 'react-icons/fa';
 import useStore from '../store/useStore';
+
 import styles from '../styles/Header.module.css';
 
 import { auth } from '../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 
 const Header = () => {
+  const [isOpen, setOpen] = useState(false);
   const cartTotal = useStore((state) => state.cartTotal);
   const currentUser = useStore((state) => state.currentUser);
   const setCurrentUser = useStore((state) => state.setCurrentUser);
@@ -88,7 +90,12 @@ const Header = () => {
         </div>
       )}
       <div className={styles.icons}>
-        <div id={styles.menu_btn}>
+        <div
+          id={styles.menu_btn}
+          onClick={() => {
+            setOpen(!isOpen);
+          }}
+        >
           <FaBars />
         </div>
         <div id={styles.cart_btn}>
