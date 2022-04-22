@@ -51,12 +51,8 @@ const Header = () => {
           <input type='submit' value='search' className={styles.btn} />
         </label>
       </form>
-      <nav className={styles.nav}>
-        <a href='#'>Sign In</a>
-        <a href='#'>Sign Up</a>
-      </nav>
       {currentUser ? (
-        <div className={styles.sign_dev}>
+        <nav>
           <a href='#' className={styles.sign}>
             {currentUser.displayName}
           </a>
@@ -64,9 +60,9 @@ const Header = () => {
           <button className={styles.sign} onClick={() => firebaseSignOut()}>
             Sign Out
           </button>
-        </div>
+        </nav>
       ) : (
-        <div className={styles.sign_dev}>
+        <nav>
           <Link
             href={{
               pathname: '/login',
@@ -87,7 +83,7 @@ const Header = () => {
           >
             <a className={styles.sign}>Sign Up</a>
           </Link>
-        </div>
+        </nav>
       )}
       <div className={styles.icons}>
         <div
@@ -102,9 +98,9 @@ const Header = () => {
           <Link href='/shopping_cart'>
             <a>
               <FaShoppingCart />
-              <span>{cartTotal}</span>
             </a>
           </Link>
+          <span className={styles.cart_total}>{cartTotal}</span>
         </div>
       </div>
     </header>
