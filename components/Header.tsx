@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { FaSearch, FaShoppingCart, FaBars, FaCircle } from 'react-icons/fa';
 import useStore from '../store/useStore';
@@ -13,6 +14,8 @@ const Header = () => {
   const currentUser = useStore((state) => state.currentUser);
   const setCurrentUser = useStore((state) => state.setCurrentUser);
   const firebaseSignOut = useStore((state) => state.firebaseSignOut);
+
+  const router = useRouter();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -62,12 +65,26 @@ const Header = () => {
         </div>
       ) : (
         <div className={styles.sign_dev}>
-          <Link href='/login'>
+          <Link
+            href={{
+              pathname: '/login',
+              query: {
+                from: router.asPath,
+              },
+            }}
+          >
             <a className={styles.sign}>Sign In</a>
           </Link>
-          <a href='#' className={styles.sign}>
-            Sign Up
-          </a>
+          <Link
+            href={{
+              pathname: '/login',
+              query: {
+                from: router.asPath,
+              },
+            }}
+          >
+            <a className={styles.sign}>Sign Up</a>
+          </Link>
         </div>
       )}
       <div className={styles.icons}>

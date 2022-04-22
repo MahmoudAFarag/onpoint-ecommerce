@@ -1,6 +1,5 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
-// import { useRouter } from 'next/router';
 import Image from 'next/image';
 import useStore from '../../store/useStore';
 import { getProduct, getProducts } from '../../lib/products';
@@ -14,10 +13,6 @@ interface ProductProps {
 
 const SingleProduct = ({ product }: ProductProps) => {
   const currentUser = useStore((state) => state.currentUser);
-  const router = useRouter();
-
-  console.log(router);
-
   return (
     <>
       <div className='flex gap-7 p-9'>

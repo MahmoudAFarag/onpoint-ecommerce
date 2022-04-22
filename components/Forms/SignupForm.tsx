@@ -1,4 +1,5 @@
 import { useState, useRef, FormEvent } from 'react';
+import { useRouter } from 'next/router';
 
 // Utilityes
 import { checkEmail, checkUsername } from '../../lib/validation';
@@ -18,6 +19,8 @@ const SignupForm = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const repasswordRef = useRef(null);
+
+  const router = useRouter();
 
   const handleError = (message: string) => {
     setError(true);
@@ -72,7 +75,7 @@ const SignupForm = () => {
         return;
       }
 
-      console.log(data);
+      router.push(`${router.query.from}`);
     } catch (e) {
       console.log(e);
     }
