@@ -10,8 +10,14 @@ export interface Product {
   discount: string;
 }
 
+interface Review {
+  name: string;
+  review: string;
+}
+
 export interface ProductDoc extends Product {
   id?: string;
+  reviews?: Review[];
   created_at: Timestamp;
   modified_at: Timestamp;
 }

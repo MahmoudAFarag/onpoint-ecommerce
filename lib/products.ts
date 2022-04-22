@@ -4,7 +4,7 @@ import { Product, ProductDoc } from '../types/Product';
 
 const productsCol = collection(db, 'products') as CollectionReference<ProductDoc>;
 
-export const getProducts = async () => {
+export const getProducts = async (): Promise<ProductDoc[]> => {
   try {
     const products: ProductDoc[] = [];
 
@@ -35,10 +35,12 @@ export const getProduct = async (id: string) => {
     throw new Error('Product not found');
   }
 
-  return {
+  const product = {
     ...docSnap.data(),
     id: docSnap.id,
   };
+
+  return product;
 };
 
 export const addProduct = async (product: Product) => {

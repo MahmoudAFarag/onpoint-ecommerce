@@ -21,7 +21,7 @@ const HomePage = ({ products }) => {
 
   return (
     <>
-      <div className='grid min-h-screen justify-items-center gap-8 p-8 md:grid-cols-2 lg:grid-cols-3'>
+      <div className='grid min-h-screen justify-items-center gap-12 p-8 md:grid-cols-2 lg:grid-cols-3'>
         {paginatedProducts.map((product) => {
           return <ProductCard key={product.id} product={product} />;
         })}
