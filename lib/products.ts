@@ -4,7 +4,7 @@ import { Product, ProductDoc } from '../types/Product';
 
 const productsCol = collection(db, 'products') as CollectionReference<ProductDoc>;
 
-export const getProducts = async (): Promise<ProductDoc[]> => {
+export const getProducts = async () => {
   try {
     const products: ProductDoc[] = [];
 

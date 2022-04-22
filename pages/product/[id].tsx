@@ -34,7 +34,9 @@ const SingleProduct = ({ product }: ProductProps) => {
           <h2 className='text-xl'>About this item</h2>
           <p className='w-[80ch] text-base leading-7 text-gray-700'>{product.description}</p>
           <div className='mt-4 flex items-center justify-end gap-3'>
-            <button className='h-[65%] w-[100px] bg-yellow-400 text-xs uppercase'>Buy Now</button>
+            <Link href={'/authcashout'} passHref>
+              <button className='h-[65%] w-[100px] bg-yellow-400 text-xs uppercase'>Buy Now</button>
+            </Link>
             <AddToCartButton product={product} />
           </div>
         </div>
@@ -70,7 +72,7 @@ const SingleProduct = ({ product }: ProductProps) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const products = await getProducts();
+  const products = (await getProducts()) as ProductDoc[];
 
   const paths = products.map((product) => ({
     params: { id: product.id },

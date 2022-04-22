@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../styles/CashOut.module.css';
 import Footer from '../components/Footer';
+
 const CashOut = () => {
   return (
     <div>
