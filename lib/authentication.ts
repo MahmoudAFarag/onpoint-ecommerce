@@ -1,6 +1,7 @@
 import { auth } from '../config/firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { signInErrorMessages, signUpErrorMessages } from './errors';
+import { addUser } from './users';
 
 export const firebaseSignIn = async (email: string, password: string) => {
   try {
@@ -23,16 +24,19 @@ export const firebaseSignIn = async (email: string, password: string) => {
 
 export const firebaseSignUp = async (email: string, password: string, name: string) => {
   try {
-    await createUserWithEmailAndPassword(auth, email, password);
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
-    if (auth.currentUser) {
-      await updateProfile(auth.currentUser, {
-        displayName: name,
-      });
-    }
+    await updateProfile(userCredential.user, {
+      displayName: name,
+    });
+
+    await addUser({
+      name: userCredential.user.displayName as string,
+      email: userCredential.user.email as string,
+    });
 
     return {
-      user: auth.currentUser,
+      user: userCredential.user,
       error: null,
     };
   } catch (e: any) {

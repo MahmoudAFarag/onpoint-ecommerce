@@ -13,6 +13,7 @@ export interface IAuthSlice {
 const createAuthSlice = (set: SetState<MyState>, _get: GetState<MyState>) => {
   return {
     currentUser: null,
+    loading: false,
 
     setCurrentUser: (user: User | null) =>
       set(

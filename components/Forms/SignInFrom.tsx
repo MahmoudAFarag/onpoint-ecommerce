@@ -1,6 +1,7 @@
-import { useState, useRef, FormEvent } from 'react';
+import { useState, useRef, FormEvent, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import useStore from '../../store/useStore';
 import { firebaseSignIn } from '../../lib/authentication';
 
 // Components
@@ -18,7 +19,14 @@ const SignInFrom = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
+  const currentUser = useStore((state) => state.currentUser);
   const router = useRouter();
+
+  useEffect(() => {
+    if (currentUser) {
+      router.push('/');
+    }
+  }, [currentUser, router]);
 
   const handleError = (message: string) => {
     setError(true);

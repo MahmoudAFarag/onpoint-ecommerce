@@ -84,7 +84,7 @@ const Header = () => {
           </Link>
           <Link
             href={{
-              pathname: '/login',
+              pathname: '/signup',
               query: {
                 from: router.asPath,
               },
