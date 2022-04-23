@@ -1,8 +1,8 @@
 // Components
-import HomePage from "../../components/HomePage";
+import HomePage from '../../components/HomePage';
 
 // Firebase
-import { getProducts } from "../../lib/products";
+import { getProducts } from '../../lib/products';
 
 const Search = ({ products }) => {
   return (
@@ -25,12 +25,9 @@ export const getServerSideProps = async (ctx) => {
   }
 
   const allProducts = await getProducts();
-  console.log(allProducts);
 
   // check if allProducts title contain q with regex
-  const products = allProducts.filter((product) =>
-    product.name.toLowerCase().match(new RegExp(q, "i"))
-  );
+  const products = allProducts.filter((product) => product.name.toLowerCase().match(new RegExp(q, 'i')));
 
   const productsParsed = JSON.parse(JSON.stringify(products));
 
