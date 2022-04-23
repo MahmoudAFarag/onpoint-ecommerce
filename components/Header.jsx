@@ -33,6 +33,15 @@ const Header = () => {
     };
   }, [setCurrentUser]);
 
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    
+    const searchInput = e.target[0]
+
+    router.push(`/search/${searchInput.value}`);
+  };
+
   return (
     <header className={styles.header}>
       <Link href='/'>
@@ -42,7 +51,7 @@ const Header = () => {
         </a>
       </Link>
 
-      <form action='' className={styles.search_form}>
+      <form className={styles.search_form} onSubmit={handleSearchSubmit}>
         <label htmlFor='search-box'>
           <FaSearch />
         </label>
