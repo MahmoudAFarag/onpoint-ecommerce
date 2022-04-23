@@ -14,11 +14,18 @@
   "dependencies": {
     "firebase": "^9.6.10",
     "immer": "^9.0.12",
+<<<<<<< HEAD
     "next": "^12.1.4",
     "next-images": "^1.8.4",
+||||||| 1be0c43
+    "next": "^12.1.4",
+=======
+    "next": "^12.1.5",
+>>>>>>> b3d5ab5f86305f5b5dbda0297457c042a4434ce7
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-icons": "^4.3.1",
+    "sharp": "^0.30.4",
     "zustand": "^3.7.2"
   },
   "devDependencies": {

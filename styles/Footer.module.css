@@ -21,21 +21,21 @@
 }
 
 .pay_methode a:hover {
-  transform: scale(1.3);
+  opacity: 0.7;
 }
 
-.footer .follow {
+.footer .Contact {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.footer .follow span:first-child {
+.footer .Contact span:first-child {
   font-size: 15px;
   color: rgb(238, 238, 238);
 }
 
-.footer .follow .social {
+.footer .Contact .social {
   display: flex;
   text-align: center;
   flex-wrap: wrap;
@@ -43,42 +43,45 @@
   font-size: 15px;
 }
 
-.footer .follow .social a {
-  padding: 6px 8px;
+.footer .Contact .social a {
+  padding: 8px;
   font-size: 15px;
   border-radius: 50%;
   color: rgb(238, 238, 238);
   transition: 0.4s;
 }
 
-.footer .follow .social a:hover {
-  transform: scale(1.3);
-}
 
-.footer .follow .social .fb {
+.footer .Contact .social .fb {
   background-color: rgb(24, 119, 242);
 }
 
-.footer .follow .social .tw {
+.footer .Contact .social .tw {
   background-color: rgb(29, 161, 242);
 }
 
-.footer .follow .social .ln {
+.footer .Contact .social .ln {
   background-color: rgb(10, 102, 194);
 }
 
-.footer .follow .social .ins {
+.footer .Contact .social .ins {
   background-color: rgb(195, 42, 163);
 }
-
-.footer .follow .env {
+.footer .Contact .social a:hover {
+  opacity: 0.7;
+}
+.footer .Contact .contact_btns{
+  display: flex;
+  justify-content: space-between;
+}
+.footer .Contact a {
   color: rgb(255, 204, 1);
   font-size: 15px;
   text-align: right;
   transition: 0.4s;
 }
-.footer .follow .env:hover {
-  letter-spacing: 1px;
+.footer .Contact a:hover {
+  color: rgb(237, 189, 0);
 }
 
 @media (max-width: 500px) {
@@ -91,11 +94,11 @@
     position: relative;
     top: -50px;
   }
-  .footer .follow {
+  .footer .Contact {
     position: relative;
     top: 30px;
   }
-  .footer .follow .social {
+  .footer .Contact .social {
     gap: 10px;
     text-align: right;
   }

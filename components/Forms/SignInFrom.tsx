@@ -54,7 +54,7 @@ const SignInFrom = () => {
       }
 
       if (data.user) {
-        router.replace('/');
+        router.push(`${router.query.from}`);
       }
     } catch (e) {
       console.log(e);

@@ -1,27 +1,36 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { FaSearch, FaShoppingCart, FaBars, FaCircle } from 'react-icons/fa';
 import useStore from '../store/useStore';
+
 import styles from '../styles/Header.module.css';
 
 import { auth } from '../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 
 const Header = () => {
+  const [isOpen, setOpen] = useState(false);
   const cartTotal = useStore((state) => state.cartTotal);
   const currentUser = useStore((state) => state.currentUser);
   const setCurrentUser = useStore((state) => state.setCurrentUser);
   const firebaseSignOut = useStore((state) => state.firebaseSignOut);
 
+  const router = useRouter();
+
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setCurrentUser(user);
       } else {
         setCurrentUser(null);
       }
     });
+
+    return () => {
+      unsubscribe();
+    };
   }, [setCurrentUser]);
 
   return (
@@ -42,12 +51,8 @@ const Header = () => {
           <input type='submit' value='search' className={styles.btn} />
         </label>
       </form>
-      <nav className={styles.nav}>
-        <a href='#'>Sign In</a>
-        <a href='#'>Sign Up</a>
-      </nav>
       {currentUser ? (
-        <div className={styles.sign_dev}>
+        <nav>
           <a href='#' className={styles.sign}>
             {currentUser.displayName}
           </a>
@@ -55,28 +60,47 @@ const Header = () => {
           <button className={styles.sign} onClick={() => firebaseSignOut()}>
             Sign Out
           </button>
-        </div>
+        </nav>
       ) : (
-        <div className={styles.sign_dev}>
-          <Link href='/login'>
+        <nav>
+          <Link
+            href={{
+              pathname: '/login',
+              query: {
+                from: router.asPath,
+              },
+            }}
+          >
             <a className={styles.sign}>Sign In</a>
           </Link>
-          <a href='#' className={styles.sign}>
-            Sign Up
-          </a>
-        </div>
+          <Link
+            href={{
+              pathname: '/login',
+              query: {
+                from: router.asPath,
+              },
+            }}
+          >
+            <a className={styles.sign}>Sign Up</a>
+          </Link>
+        </nav>
       )}
       <div className={styles.icons}>
-        <div id={styles.menu_btn}>
+        <div
+          id={styles.menu_btn}
+          onClick={() => {
+            setOpen(!isOpen);
+          }}
+        >
           <FaBars />
         </div>
         <div id={styles.cart_btn}>
           <Link href='/shopping_cart'>
             <a>
               <FaShoppingCart />
-              <span>{cartTotal}</span>
             </a>
           </Link>
+          <span className={styles.cart_total}>{cartTotal}</span>
         </div>
       </div>
     </header>

@@ -35,10 +35,12 @@ export const getProduct = async (id: string) => {
     throw new Error('Product not found');
   }
 
-  return {
+  const product = {
     ...docSnap.data(),
     id: docSnap.id,
   };
+
+  return product;
 };
 
 export const addProduct = async (product: Product) => {
