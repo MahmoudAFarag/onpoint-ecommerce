@@ -1,11 +1,12 @@
 import { GetState, SetState } from 'zustand';
 import produce from 'immer';
 import { auth } from '../config/firebase';
-import { signOut, User } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
+import { User } from '../types/User';
 import { MyState } from './useStore';
 
 export interface IAuthSlice {
-  currentUser: User | null;
+  currentUser: User;
   setCurrentUser: (user: User | null) => void;
   firebaseSignOut: () => void;
 }
@@ -13,7 +14,6 @@ export interface IAuthSlice {
 const createAuthSlice = (set: SetState<MyState>, _get: GetState<MyState>) => {
   return {
     currentUser: null,
-    loading: false,
 
     setCurrentUser: (user: User | null) =>
       set(

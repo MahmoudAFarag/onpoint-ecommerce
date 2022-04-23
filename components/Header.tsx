@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -9,6 +9,7 @@ import styles from '../styles/Header.module.css';
 
 import { auth } from '../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import { getUser } from '../lib/users';
 
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
@@ -20,9 +21,19 @@ const Header = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        setCurrentUser(user);
+        const dbUser = await getUser(user.uid);
+
+        if (dbUser?.role === 'admin') {
+          setCurrentUser({
+            uid: user.uid,
+            name: user.displayName as string,
+            email: user.email as string,
+            status: dbUser.status,
+            role: dbUser.role,
+          });
+        }
       } else {
         setCurrentUser(null);
       }
@@ -33,11 +44,11 @@ const Header = () => {
     };
   }, [setCurrentUser]);
 
-
-  const handleSearchSubmit = (e) => {
+  const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault();
-    
-    const searchInput = e.target[0]
+
+    // @ts-ignore
+    const searchInput = e.target[0];
 
     router.push(`/search/${searchInput.value}`);
   };
@@ -63,7 +74,7 @@ const Header = () => {
       {currentUser ? (
         <nav>
           <a href='#' className={styles.sign}>
-            {currentUser.displayName}
+            {currentUser.name}
           </a>
 
           <button className={styles.sign} onClick={() => firebaseSignOut()}>
