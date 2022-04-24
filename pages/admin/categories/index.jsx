@@ -6,7 +6,7 @@ import List from "../../../components/categories/List";
 import SimpleMessage from "../../../components/SimpleMessage";
 
 // Firebase
-import { getCategories } from "../../../lib/categories";
+import { addCategory } from "../../../lib/categories";
 import checkUserIsAdmin from "../../../lib/checkUserIsAdmin";
 import categoriesSnapshot from "../../../lib/categoriesSnapshot";
 
@@ -17,6 +17,7 @@ import useCreateCategoriesSlice from "../../../store/createCategoriesSlice.js";
 const Index = () => {
   const auth = useStore((state) => state.currentUser);
   const categoriesStore = useCreateCategoriesSlice();
+  const [unSubCategories, setUnSubCategories] = useState(null);
   const [userMessage, setUserMessage] = useState({ show: false, message: "" });
   const router = useRouter();
 
@@ -39,12 +40,15 @@ const Index = () => {
           show: false,
           message: "",
         });
-        categoriesSnapshot(
+
+        const unSub = categoriesSnapshot(
           categoriesStore.add,
           categoriesStore.update,
           categoriesStore.delete,
           categoriesStore.finishLoading
         );
+
+        return unSub;
       }
     } else {
       setUserMessage({ show: true, message: "You are not logged in" });
@@ -52,7 +56,16 @@ const Index = () => {
   };
 
   useEffect(() => {
-    checkAdmin();
+    const unSub = checkAdmin();
+
+    return () => {
+      unSub.then((unSubs) => {
+        if (typeof unSubs === "function") {
+          unSubs();
+          console.log("unSub");
+        }
+      });
+    };
   }, [auth]);
 
   if (categoriesStore.loading) return <SimpleMessage txt="Loading..." />;

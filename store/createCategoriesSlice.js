@@ -54,7 +54,7 @@ const useCreateCategoriesSlice = create((set) => ({
     }),
 
   finishLoading: () => {
-    set((state) => ({ value: { ...state.value, isLoadding: false } }));
+    set((state) => ({ value: { ...state.value, loading: false } }));
   },
 }));
 
