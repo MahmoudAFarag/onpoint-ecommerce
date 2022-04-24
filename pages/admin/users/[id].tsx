@@ -46,15 +46,16 @@ const UserPage = ({ user }: UserPageProps) => {
             placeholder='blur'
             blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(250, 250))}`}
           />
-          <div className='mr-auto flex flex-col gap-4'>
+
+          {/* <div className='mr-auto flex flex-col gap-4'>
             <input value={`Name: ${user.name}`} disabled={inputDisabled} className='w' />
-            {/* <h1 className='text-xl'>Name: {user.name}</h1> */}
+
             <h1 className='text-xl'>Email: {user.email}</h1>
             <h1 className='text-xl'>Status: {user.status}</h1>
             <h1 className='text-xl'>Role: {user.role}</h1>
-          </div>
+          </div> */}
 
-          <div className='flex gap-4 self-end'>
+          {/* <div className='flex gap-4 self-end'>
             <button className='bg-yellow-400 p-2 text-2xl' onClick={() => setInputDisabled(false)}>
               Edit
             </button>
@@ -62,7 +63,7 @@ const UserPage = ({ user }: UserPageProps) => {
             <button className='bg-red-400 p-2 text-2xl'>
               <Link href={`/admin/users/${user.uid}/delete`}>Delete</Link>
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
