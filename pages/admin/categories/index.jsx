@@ -11,13 +11,13 @@ import categoriesSnapshot from "../../../lib/categoriesSnapshot";
 
 // State Management
 import useStore from "../../../store/useStore";
-import { useCreateCategoriesSlice } from "../../../store/createCategoriesSlice";
+import useCreateCategoriesSlice from "../../../store/createCategoriesSlice.js";
 
 const Index = ({ categories }) => {
   const auth = useStore((state) => state.currentUser);
-  const categoies = useCreateCategoriesSlice();
+  const categoriesStore = useCreateCategoriesSlice();
   const [userMessage, setUserMessage] = useState({ show: false, message: "" });
-  console.log(categories);
+  console.log("CAtegories : ", categoriesStore);
 
   const checkAdmin = async () => {
     if (auth) {
@@ -34,10 +34,10 @@ const Index = ({ categories }) => {
           message: "",
         });
         categoriesSnapshot(
-          categoies.add,
-          categoies.update,
-          categoies.delete,
-          categoies.finishLoading
+          categoriesStore.add,
+          categoriesStore.update,
+          categoriesStore.delete,
+          categoriesStore.finishLoading
         );
       }
     } else {
@@ -49,6 +49,7 @@ const Index = ({ categories }) => {
     checkAdmin();
   }, [auth]);
 
+  if (categoriesStore.loading) return <SimpleMessage txt="Loading..." />;
   if (userMessage.show) return <SimpleMessage txt={userMessage.message} />;
   return (
     <main className="container mx-auto py-6 px-9 lg:px-0">
@@ -68,7 +69,7 @@ const Index = ({ categories }) => {
 
       <Add />
 
-      <List list={categories} />
+      <List list={categoriesStore.value.categories} />
     </main>
   );
 };

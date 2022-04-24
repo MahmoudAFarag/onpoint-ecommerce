@@ -39,6 +39,7 @@ const Add = () => {
 
     if (!name.trim()) {
       setDisabled(true);
+      setAdding(false);
       return;
     }
 

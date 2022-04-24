@@ -15,7 +15,11 @@ const ListItem = ({ id, name, handleDelete }) => {
 
   const handleCategoryUpdate = async () => {
     setEdit(false);
-    const update = await updateCategory(id, name, newName);
+    if (!newName.trim()) {
+      setNewName(name);
+      return;
+    }
+    const update = await updateCategory(id, name, newName.trim());
 
     // here should show message some how
   };
@@ -43,12 +47,14 @@ const ListItem = ({ id, name, handleDelete }) => {
           </>
         )}
 
-        <button
-          className="rounded bg-error px-2 text-white hover:bg-red-500"
-          onClick={() => handleDelete(id)}
-        >
-          <BiTrash />
-        </button>
+        {!edit && (
+          <button
+            className="rounded bg-error px-2 text-white hover:bg-red-500"
+            onClick={() => handleDelete(id)}
+          >
+            <BiTrash />
+          </button>
+        )}
 
         <button
           className="rounded bg-shark px-2 text-white hover:bg-shark-dark"
