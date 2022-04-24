@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -20,9 +20,14 @@ const Header = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        setCurrentUser(user);
+        setCurrentUser({
+          uid: user.uid,
+          name: user.displayName as string,
+          email: user.email as string,
+          role: 'user',
+        });
       } else {
         setCurrentUser(null);
       }
@@ -33,11 +38,11 @@ const Header = () => {
     };
   }, [setCurrentUser]);
 
-
-  const handleSearchSubmit = (e) => {
+  const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault();
-    
-    const searchInput = e.target[0]
+
+    // @ts-ignore
+    const searchInput = e.target[0];
 
     router.push(`/search/${searchInput.value}`);
   };
@@ -62,9 +67,9 @@ const Header = () => {
       </form>
       {currentUser ? (
         <nav>
-          <a href='#' className={styles.sign}>
-            {currentUser.displayName}
-          </a>
+          <Link href={`/profile/${currentUser.uid}`}>
+            <a className={styles.sign}>{currentUser.name}</a>
+          </Link>
 
           <button className={styles.sign} onClick={() => firebaseSignOut()}>
             Sign Out

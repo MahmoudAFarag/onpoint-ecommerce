@@ -33,6 +33,7 @@ export const firebaseSignUp = async (email: string, password: string, name: stri
     await addUser({
       name: userCredential.user.displayName as string,
       email: userCredential.user.email as string,
+      uid: userCredential.user.uid,
     });
 
     return {
