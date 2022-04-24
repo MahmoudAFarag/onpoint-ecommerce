@@ -13,7 +13,7 @@ import categoriesSnapshot from "../../../lib/categoriesSnapshot";
 import useStore from "../../../store/useStore";
 import useCreateCategoriesSlice from "../../../store/createCategoriesSlice.js";
 
-const Index = ({ categories }) => {
+const Index = () => {
   const auth = useStore((state) => state.currentUser);
   const categoriesStore = useCreateCategoriesSlice();
   const [userMessage, setUserMessage] = useState({ show: false, message: "" });
@@ -71,16 +71,6 @@ const Index = ({ categories }) => {
       <List list={categoriesStore.value.categories} />
     </main>
   );
-};
-
-export const getServerSideProps = async (ctx) => {
-  const categories = await getCategories();
-
-  return {
-    props: {
-      categories: JSON.parse(JSON.stringify(categories)),
-    },
-  };
 };
 
 export default Index;
