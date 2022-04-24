@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 // Components
 import Add from "../../../components/categories/Add";
@@ -17,10 +18,16 @@ const Index = () => {
   const auth = useStore((state) => state.currentUser);
   const categoriesStore = useCreateCategoriesSlice();
   const [userMessage, setUserMessage] = useState({ show: false, message: "" });
+  const router = useRouter();
 
   const checkAdmin = async () => {
     if (auth) {
       const isAdmin = await checkUserIsAdmin(auth.uid);
+
+      if (!isAdmin.done) {
+        router.push("/");
+        return;
+      }
 
       if (isAdmin.done && !isAdmin.isAdmin) {
         setUserMessage({
