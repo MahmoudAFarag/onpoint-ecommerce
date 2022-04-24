@@ -41,7 +41,7 @@ module.exports = {
           DEFAULT: "#E4E8F1",
           dark: "#545860",
         },
-        shark: "#2B2E35",
+        shark: { DEFAULT: "#2B2E35", dark: "#181A1E" },
         supernova: { DEFAULT: "#FFCC01", dark: "#EDBD00" },
         BG: "#F8F8F8",
         success: "#26B702",
