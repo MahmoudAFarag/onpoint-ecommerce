@@ -26,12 +26,3 @@ const SimpleMessage = ({ txt, status = false, clear = false }) => {
 };
 
 export default SimpleMessage;
-
-// Todos:
-// 0. change addCategories function from run transaction to query
-// 1. create Categories Slice
-// 2. create function to start categories snapshots (addFromSnapshotToSliceFunction)
-// 3. check if user role == admin
-// 4. if user role == admin, start snapshot
-// 5. if user role != admin, dont start snapshot
-// 6. use categories slice to render categories in categories admin page
