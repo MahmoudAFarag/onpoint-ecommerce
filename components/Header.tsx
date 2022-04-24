@@ -67,9 +67,9 @@ const Header = () => {
       </form>
       {currentUser ? (
         <nav>
-          <a href='#' className={styles.sign}>
-            {currentUser.name}
-          </a>
+          <Link href={`/profile/${currentUser.uid}`}>
+            <a className={styles.sign}>{currentUser.name}</a>
+          </Link>
 
           <button className={styles.sign} onClick={() => firebaseSignOut()}>
             Sign Out
