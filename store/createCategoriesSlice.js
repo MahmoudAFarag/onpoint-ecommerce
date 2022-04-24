@@ -5,7 +5,7 @@ const initalState = {
   categories: [],
 };
 
-const createCategoriesSlice = () => {
+const useCreateCategoriesSlice = () => {
   return {
     value: initalState,
 
@@ -60,4 +60,4 @@ const createCategoriesSlice = () => {
   };
 };
 
-export default createCategoriesSlice;
+export default useCreateCategoriesSlice;

@@ -7,13 +7,17 @@ import SimpleMessage from "../../../components/SimpleMessage";
 // Firebase
 import { getCategories } from "../../../lib/categories";
 import checkUserIsAdmin from "../../../lib/checkUserIsAdmin";
+import categoriesSnapshot from "../../../lib/categoriesSnapshot";
 
 // State Management
 import useStore from "../../../store/useStore";
+import { useCreateCategoriesSlice } from "../../../store/createCategoriesSlice";
 
 const Index = ({ categories }) => {
   const auth = useStore((state) => state.currentUser);
+  const categoies = useCreateCategoriesSlice();
   const [userMessage, setUserMessage] = useState({ show: false, message: "" });
+  console.log(categories);
 
   const checkAdmin = async () => {
     if (auth) {
@@ -29,6 +33,12 @@ const Index = ({ categories }) => {
           show: false,
           message: "",
         });
+        categoriesSnapshot(
+          categoies.add,
+          categoies.update,
+          categoies.delete,
+          categoies.finishLoading
+        );
       }
     } else {
       setUserMessage({ show: true, message: "You are not logged in" });
