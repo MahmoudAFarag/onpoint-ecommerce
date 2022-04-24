@@ -17,7 +17,6 @@ const Index = ({ categories }) => {
   const auth = useStore((state) => state.currentUser);
   const categoriesStore = useCreateCategoriesSlice();
   const [userMessage, setUserMessage] = useState({ show: false, message: "" });
-  console.log("CAtegories : ", categoriesStore);
 
   const checkAdmin = async () => {
     if (auth) {
