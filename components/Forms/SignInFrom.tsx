@@ -1,7 +1,6 @@
 import { useState, useRef, FormEvent, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import useStore from '../../store/useStore';
 import { firebaseSignIn } from '../../lib/authentication';
 
 // Components
