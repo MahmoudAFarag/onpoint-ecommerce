@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 const SimpleCountdown = ({ current, change }) => {
   useEffect(() => {
@@ -7,10 +7,10 @@ const SimpleCountdown = ({ current, change }) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [change]);
 
   return (
-    <div className="w-full bg-success p-1 text-center font-serif text-sm text-white">
+    <div className='w-full bg-success p-1 text-center font-serif text-sm text-white'>
       You Can Re-Send Email in {current} Seconds
     </div>
   );

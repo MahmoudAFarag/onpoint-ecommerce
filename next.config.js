@@ -2,8 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['fakestoreapi.com'],
+    domains: ['fakestoreapi.com', 'placebeard.it'],
   },
 };
 module.exports = nextConfig;
-

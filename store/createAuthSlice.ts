@@ -1,7 +1,8 @@
 import { GetState, SetState } from 'zustand';
 import produce from 'immer';
 import { auth } from '../config/firebase';
-import { signOut, User } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
+import { User } from '../types/User';
 import { MyState } from './useStore';
 
 export interface IAuthSlice {
