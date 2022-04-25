@@ -1,9 +1,19 @@
 import { db } from '../config/firebase';
-import { serverTimestamp, collection, addDoc, CollectionReference, setDoc, doc, getDoc, getDocs } from 'firebase/firestore';
+import {
+  serverTimestamp,
+  collection,
+  CollectionReference,
+  setDoc,
+  doc,
+  getDoc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+} from 'firebase/firestore';
 
 import { User } from '../types/User';
 
-const userCollection = collection(db, 'users') as CollectionReference<User>;
+export const userCollection = collection(db, 'users') as CollectionReference<User>;
 
 export const getUsers = async () => {
   try {
@@ -55,5 +65,29 @@ export const addUser = async (user: User) => {
     return userDoc;
   } catch {
     throw new Error('Error adding user');
+  }
+};
+
+export const updateUser = async (user: User) => {
+  const userRef = doc(userCollection, user.uid);
+
+  try {
+    const updatedUser = await updateDoc(userRef, {
+      status: user.status,
+    });
+
+    console.log(updatedUser);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteUser = async (uid: string) => {
+  const userRef = doc(userCollection, uid);
+
+  try {
+    await deleteDoc(userRef);
+  } catch (error) {
+    console.error('Error deleting user: ', error);
   }
 };

@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Image from 'next/image';
+
 import { shimmer, toBase64 } from '../../lib/image_placeholder';
 
 import { getUser } from '../../lib/users';
@@ -10,6 +12,14 @@ interface UserPageProps {
 }
 
 const UserProfilePage = ({ user }: UserPageProps) => {
+  let statusColor = 'bg-green-500';
+
+  if (user.status === 'deactivated') {
+    statusColor = 'bg-red-500';
+  } else if (user.status === 'suspended') {
+    statusColor = 'bg-orange-500';
+  }
+
   return (
     <div className='flex flex-col p-8'>
       <h1 className='mb-4 text-3xl'>User details:</h1>
@@ -29,8 +39,10 @@ const UserProfilePage = ({ user }: UserPageProps) => {
             <h5 className='my-3 text-xl font-medium text-gray-900 dark:text-white'>{user.name}</h5>
             <span className='text-sm text-gray-500 dark:text-gray-400'>{user.role}</span>
 
-            <span className='mt-3 inline-flex items-center rounded-lg bg-green-500 py-2 px-4 text-center text-sm font-medium text-white  focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
-              {user.status}
+            <span
+              className={`mt-3 inline-flex items-center rounded-lg ${statusColor} py-2 px-4 text-center text-sm font-medium text-white`}
+            >
+              {user.status?.toUpperCase()}
             </span>
           </div>
         </div>
@@ -57,7 +69,7 @@ const UserProfilePage = ({ user }: UserPageProps) => {
 
               <div className='flex items-center gap-5'>
                 <h5 className='my-3 text-lg font-medium text-gray-900 dark:text-white'>City: </h5>
-                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.city}</span>
+                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.city ?? 'Not Set'}</span>
               </div>
             </div>
 
@@ -76,12 +88,12 @@ const UserProfilePage = ({ user }: UserPageProps) => {
             <div className='flex w-full items-center'>
               <div className='mr-auto flex items-center gap-5'>
                 <h5 className='my-3 text-lg font-medium text-gray-900 dark:text-white'>Address 1: </h5>
-                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.address1}</span>
+                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.address1 ?? 'Not Set'}</span>
               </div>
 
               <div className='flex items-center gap-5'>
                 <h5 className='my-3 text-lg font-medium text-gray-900 dark:text-white'>Address 2: </h5>
-                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.address2}</span>
+                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.address2 ?? 'Not Set'}</span>
               </div>
             </div>
 
