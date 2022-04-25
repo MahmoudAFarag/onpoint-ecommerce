@@ -49,6 +49,9 @@ const Add = () => {
       message: add.message,
       status: add.done ? "success" : "error",
     });
+
+    setName("");
+    setUserMessage({ ...userMessage, show: false });
     setShowForm(false);
     setAdding(false);
   };
