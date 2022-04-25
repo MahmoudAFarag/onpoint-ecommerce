@@ -1,27 +1,68 @@
+// Core imports
+import { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Image from 'next/image';
-import { shimmer, toBase64 } from '../../../lib/image_placeholder';
+import { useRouter } from 'next/router';
 
+// Components
+import Spinner from '../../../components/Spinner';
+import Forbidden from '../../../components/Forbidden';
+
+// Utilities
+import { shimmer, toBase64 } from '../../../lib/image_placeholder';
 import useStore from '../../../store/useStore';
-import { getUser } from '../../../lib/users';
+import { getUser, deleteUser } from '../../../lib/users';
+
+// Types
 import { User } from '../../../types/User';
 
 interface UserPageProps {
   user: User;
 }
 
-const UserPage = ({ user }: UserPageProps) => {
-  const currentUser = useStore((state) => state.currentUser);
+const AdminUserProfilePage = ({ user }: UserPageProps) => {
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  if (currentUser?.role !== 'admin') {
-    return (
-      <div className='grid h-screen place-items-center'>
-        <h1 className='text-4xl'>401 | Forbidden</h1>
-      </div>
-    );
+  const currentUser = useStore((state) => state.currentUser);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!currentUser) {
+      return;
+    }
+
+    getUser(currentUser.uid as string).then((user) => {
+      if (user?.role === 'admin') {
+        setIsAdmin(true);
+        setLoading(false);
+      } else {
+        setLoading(false);
+      }
+    });
+  }, [currentUser, isAdmin]);
+
+  const handleUserDelete = async () => {
+    await deleteUser(user.uid as string);
+
+    router.replace('/admin/users');
+  };
+
+  let statusColor = 'bg-green-500';
+
+  if (user.status === 'deactivated') {
+    statusColor = 'bg-red-500';
+  } else if (user.status === 'suspended') {
+    statusColor = 'bg-orange-500';
   }
 
-  console.log();
+  if (loading) {
+    return <Spinner />;
+  }
+
+  if (!isAdmin) {
+    return <Forbidden />;
+  }
 
   return (
     <div className='flex flex-col p-8'>
@@ -42,14 +83,16 @@ const UserPage = ({ user }: UserPageProps) => {
             <h5 className='my-3 text-xl font-medium text-gray-900 dark:text-white'>{user.name}</h5>
             <span className='text-sm text-gray-500 dark:text-gray-400'>{user.role}</span>
 
-            <span className='mt-3 inline-flex items-center rounded-lg bg-green-500 py-2 px-4 text-center text-sm font-medium text-white  focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
-              {user.status}
+            <span
+              className={`mt-3 inline-flex items-center rounded-lg ${statusColor} py-2 px-4 text-center text-sm font-medium text-white`}
+            >
+              {user.status?.toUpperCase()}
             </span>
           </div>
         </div>
 
         <div className='w-[80vw] rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800'>
-          <div className='flex flex-col items-start gap-3 p-10'>
+          <div className='flex flex-col justify-center gap-3 p-10'>
             <div className='flex w-full items-center'>
               <div className='mr-auto flex items-center gap-5'>
                 <h5 className='my-3 text-lg font-medium text-gray-900 dark:text-white'>Email: </h5>
@@ -109,9 +152,19 @@ const UserPage = ({ user }: UserPageProps) => {
                 <span className='text-lg text-gray-500 dark:text-gray-400'>{new Date().toDateString()}</span>
               </div>
             </div>
-            <button className='ml-auto mt-5 rounded-md bg-green-500 py-2 px-4 font-bold text-white hover:bg-green-700'>
-              Edit
-            </button>
+
+            <div className='mt-7 flex items-center justify-end gap-5'>
+              <button className='focus:shadow-outline rounded-full bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700 focus:outline-none'>
+                Edit
+              </button>
+
+              <button
+                className='focus:shadow-outline rounded-full bg-red-500 py-2 px-4 font-bold text-white hover:bg-red-700 focus:outline-none'
+                onClick={handleUserDelete}
+              >
+                Delete
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -130,4 +183,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-export default UserPage;
+export default AdminUserProfilePage;
