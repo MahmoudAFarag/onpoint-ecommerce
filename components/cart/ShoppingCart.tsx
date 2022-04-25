@@ -26,12 +26,17 @@ const ShoppingCart = () => {
           <CartItem key={cartItem.id} item={cartItem} />
 
         ))}
+
+        
       </div>
-      <div className=' flex items-center justify-center pb-4'>
-        <Link  href={ {pathname:'/cashout'}} >
-      <button className="bg-amber-400 font-bold py-2 px-4  pb-3 rounded " > Proceed to CheckOut</button>
-      </Link>
-      </div>
+   {cartItems.length===0?""
+      
+      : <div className=' flex items-center justify-center pb-4'>
+      <Link  href={ {pathname:'/cashout'}} >
+    <button className="bg-amber-400 font-bold py-2 px-4  pb-3 rounded " > Proceed to CheckOut</button>
+    </Link>
+    </div>
+}
     </>
   );
 };
