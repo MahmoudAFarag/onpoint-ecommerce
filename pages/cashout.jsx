@@ -33,6 +33,7 @@ const CashOut = () => {
     setRadio(  null )
   }
   console.log(products)
+
   console.log(totalcost)
 
   return (
@@ -58,9 +59,9 @@ const CashOut = () => {
                 </li>
                 
                 )}
-              <div className='font-bold' >The Sum :{(totalcost).toFixed(2)}</div>
+              <div className='font-bold pb-4' >The Sum :{(totalcost).toFixed(2)}</div>
               </ul>
-              <div className='font-bold' >shipping cost: {(products.length*5)}$</div>
+              <div className='font-bold pb-4' >shipping cost: {(products.length*5)}$</div>
               <h1 className='h-10 w-full bg-slate-700 py-2 text-center text-white'>Total Cost:{(totalcost+(products.length*5)).toFixed(2)} $</h1>
             </div>
             <br></br>
