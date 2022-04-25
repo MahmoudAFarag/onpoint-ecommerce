@@ -19,7 +19,10 @@ const createAuthSlice = (set: SetState<MyState>, _get: GetState<MyState>) => {
       set(
         produce((state) => {
           state.currentUser = user;
-        })
+        }),
+        false,
+        // @ts-ignore
+        'auth/setCurrentUser'
       ),
 
     firebaseSignOut: async () => {
@@ -28,7 +31,10 @@ const createAuthSlice = (set: SetState<MyState>, _get: GetState<MyState>) => {
       set(
         produce((state) => {
           state.currentUser = null;
-        })
+        }),
+        false,
+        // @ts-ignore
+        'auth/firebaseSignOut'
       );
     },
   };
