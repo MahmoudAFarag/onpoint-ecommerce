@@ -22,7 +22,10 @@ const createCartSlice = (set: SetState<MyState>, _get: GetState<MyState>) => {
           item.cartQuantity = 1;
           state.items.push(item);
           state.cartTotal += 1;
-        })
+        }),
+        false,
+        // @ts-ignore
+        'cart/addItem'
       ),
 
     removeItem: (item: ProductCart) =>
@@ -32,7 +35,10 @@ const createCartSlice = (set: SetState<MyState>, _get: GetState<MyState>) => {
 
           state.cartTotal -= state.items[itemIndex].cartQuantity;
           state.items.splice(itemIndex, 1);
-        })
+        }),
+        false,
+        // @ts-ignore
+        'cart/removeItem'
       ),
 
     increaseQuantity: (item: ProductCart) =>
@@ -46,7 +52,10 @@ const createCartSlice = (set: SetState<MyState>, _get: GetState<MyState>) => {
 
           state.items[itemIndex].cartQuantity++;
           state.cartTotal += 1;
-        })
+        }),
+        false,
+        // @ts-ignore
+        'cart/increaseQuantity'
       ),
 
     decreaseQuantity: (item: ProductCart) =>
@@ -62,7 +71,10 @@ const createCartSlice = (set: SetState<MyState>, _get: GetState<MyState>) => {
             state.items[itemIndex].cartQuantity--;
             state.cartTotal -= 1;
           }
-        })
+        }),
+        false,
+        // @ts-ignore
+        'cart/decreaseQuantity'
       ),
   };
 };
