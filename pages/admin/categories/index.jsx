@@ -17,7 +17,6 @@ import useCreateCategoriesSlice from "../../../store/createCategoriesSlice.js";
 const Index = () => {
   const auth = useStore((state) => state.currentUser);
   const categoriesStore = useCreateCategoriesSlice();
-  const [unSubCategories, setUnSubCategories] = useState(null);
   const [userMessage, setUserMessage] = useState({ show: false, message: "" });
   const router = useRouter();
 
@@ -68,7 +67,9 @@ const Index = () => {
     };
   }, [auth]);
 
-  if (categoriesStore.loading) return <SimpleMessage txt="Loading..." />;
+  useEffect(() => {}, []);
+
+  if (categoriesStore.value.loading) return <SimpleMessage txt="Loading..." />;
   if (userMessage.show) return <SimpleMessage txt={userMessage.message} />;
   return (
     <main className="container mx-auto py-6 px-9 lg:px-0">
