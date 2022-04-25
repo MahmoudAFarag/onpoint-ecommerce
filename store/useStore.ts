@@ -8,7 +8,6 @@ import createAuthSlice, { IAuthSlice } from './createAuthSlice';
 export type MyState = ProductSlice & CartSlice & IAuthSlice;
 
 const useStore = create<MyState>(
-  // @ts-ignore
   devtools((set, get) => {
     return {
       ...createProductSlice(set, get),
