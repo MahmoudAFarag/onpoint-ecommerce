@@ -74,7 +74,7 @@ const ManageUsersPage = () => {
               <td className='px-6 py-4'>{user.role}</td>
               <td className='px-6 py-4'>{user.status}</td>
               <td className='px-6 py-4 text-right'>
-                <Link href={`/admin/users/${user.uid}`} passHref>
+                <Link href={`/profile/${user.uid}`} passHref>
                   <a className='text-sm text-gray-600 dark:text-gray-400'>
                     <svg className='h-6 w-6' fill='currentColor' viewBox='0 0 20 20'>
                       <path

@@ -6,7 +6,7 @@ import { User } from '../types/User';
 import { MyState } from './useStore';
 
 export interface IAuthSlice {
-  currentUser: User;
+  currentUser: User | null;
   setCurrentUser: (user: User | null) => void;
   firebaseSignOut: () => void;
 }
