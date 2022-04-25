@@ -17,7 +17,20 @@
     "noImplicitAny": true
   },
 
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/HomePage.jsx", "pages/product/[id].jsx", "pages/singleproduct.jsx", "pages/unauthcashout.jsx", "pages/unauthsingleproduct.jsx", "pages/authsingleproduct.jsx","store/CartStore.jsx", "lib/categories.js"],
 
-  "exclude": ["node_modules"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "components/HomePage.jsx",
+    "pages/product/[id].jsx",
+    "pages/singleproduct.jsx",
+    "pages/unauthcashout.jsx",
+    "pages/unauthsingleproduct.jsx",
+    "pages/authsingleproduct.jsx",
+    "store/CartStore.jsx",
+    "components/Header.tsx"
+  ],
+
+  "exclude": ["node_modules"]
 }
