@@ -69,7 +69,7 @@ const UserProfilePage = ({ user }: UserPageProps) => {
 
               <div className='flex items-center gap-5'>
                 <h5 className='my-3 text-lg font-medium text-gray-900 dark:text-white'>City: </h5>
-                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.city}</span>
+                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.city ?? 'Not Set'}</span>
               </div>
             </div>
 
@@ -88,12 +88,12 @@ const UserProfilePage = ({ user }: UserPageProps) => {
             <div className='flex w-full items-center'>
               <div className='mr-auto flex items-center gap-5'>
                 <h5 className='my-3 text-lg font-medium text-gray-900 dark:text-white'>Address 1: </h5>
-                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.address1}</span>
+                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.address1 ?? 'Not Set'}</span>
               </div>
 
               <div className='flex items-center gap-5'>
                 <h5 className='my-3 text-lg font-medium text-gray-900 dark:text-white'>Address 2: </h5>
-                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.address2}</span>
+                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.address2 ?? 'Not Set'}</span>
               </div>
             </div>
 

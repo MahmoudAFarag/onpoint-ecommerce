@@ -1,10 +1,19 @@
 import { db } from '../config/firebase';
-import { serverTimestamp, collection, CollectionReference, setDoc, doc, getDoc, getDocs, deleteDoc } from 'firebase/firestore';
+import {
+  serverTimestamp,
+  collection,
+  CollectionReference,
+  setDoc,
+  doc,
+  getDoc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+} from 'firebase/firestore';
 
 import { User } from '../types/User';
-import { useRef } from 'react';
 
-const userCollection = collection(db, 'users') as CollectionReference<User>;
+export const userCollection = collection(db, 'users') as CollectionReference<User>;
 
 export const getUsers = async () => {
   try {
@@ -56,6 +65,20 @@ export const addUser = async (user: User) => {
     return userDoc;
   } catch {
     throw new Error('Error adding user');
+  }
+};
+
+export const updateUser = async (user: User) => {
+  const userRef = doc(userCollection, user.uid);
+
+  try {
+    const updatedUser = await updateDoc(userRef, {
+      status: user.status,
+    });
+
+    console.log(updatedUser);
+  } catch (error) {
+    console.log(error);
   }
 };
 

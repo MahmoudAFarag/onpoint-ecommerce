@@ -1,5 +1,5 @@
 // Core imports
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -11,7 +11,7 @@ import Forbidden from '../../../components/Forbidden';
 // Utilities
 import { shimmer, toBase64 } from '../../../lib/image_placeholder';
 import useStore from '../../../store/useStore';
-import { getUser, deleteUser } from '../../../lib/users';
+import { getUser, deleteUser, updateUser } from '../../../lib/users';
 
 // Types
 import { User } from '../../../types/User';
@@ -23,6 +23,8 @@ interface UserPageProps {
 const AdminUserProfilePage = ({ user }: UserPageProps) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [editing, setEditing] = useState(false);
+  const [userStatus, setUserStatus] = useState(user.status);
 
   const currentUser = useStore((state) => state.currentUser);
   const router = useRouter();
@@ -48,11 +50,19 @@ const AdminUserProfilePage = ({ user }: UserPageProps) => {
     router.replace('/admin/users');
   };
 
+  const handleStatusChange = async () => {
+    setEditing(false);
+    await updateUser({
+      uid: user.uid,
+      status: userStatus,
+    });
+  };
+
   let statusColor = 'bg-green-500';
 
-  if (user.status === 'deactivated') {
+  if (userStatus === 'deactivated') {
     statusColor = 'bg-red-500';
-  } else if (user.status === 'suspended') {
+  } else if (userStatus === 'suspended') {
     statusColor = 'bg-orange-500';
   }
 
@@ -86,7 +96,7 @@ const AdminUserProfilePage = ({ user }: UserPageProps) => {
             <span
               className={`mt-3 inline-flex items-center rounded-lg ${statusColor} py-2 px-4 text-center text-sm font-medium text-white`}
             >
-              {user.status?.toUpperCase()}
+              {userStatus?.toUpperCase()}
             </span>
           </div>
         </div>
@@ -113,14 +123,25 @@ const AdminUserProfilePage = ({ user }: UserPageProps) => {
 
               <div className='flex items-center gap-5'>
                 <h5 className='my-3 text-lg font-medium text-gray-900 dark:text-white'>City: </h5>
-                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.city}</span>
+                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.city ?? 'Not Set'}</span>
               </div>
             </div>
 
             <div className='flex w-full items-center'>
               <div className='mr-auto flex items-center gap-5'>
                 <h5 className='my-3 text-lg font-medium text-gray-900 dark:text-white'>Status: </h5>
-                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.status}</span>
+                {editing ? (
+                  <select
+                    className='w-full rounded-md border-transparent bg-gray-200 px-4 py-3 text-sm focus:border-gray-500 focus:bg-white focus:ring-0'
+                    onChange={(e) => setUserStatus(e.target.value)}
+                  >
+                    <option value='active'>Active</option>
+                    <option value='deactivated'>Deactivated</option>
+                    <option value='suspended'>Suspended</option>
+                  </select>
+                ) : (
+                  <span className='text-lg text-gray-500 dark:text-gray-400'>{userStatus}</span>
+                )}
               </div>
 
               <div className='flex items-center gap-5'>
@@ -132,12 +153,12 @@ const AdminUserProfilePage = ({ user }: UserPageProps) => {
             <div className='flex w-full items-center'>
               <div className='mr-auto flex items-center gap-5'>
                 <h5 className='my-3 text-lg font-medium text-gray-900 dark:text-white'>Address 1: </h5>
-                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.address1}</span>
+                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.address1 ?? 'Not Set'}</span>
               </div>
 
               <div className='flex items-center gap-5'>
                 <h5 className='my-3 text-lg font-medium text-gray-900 dark:text-white'>Address 2: </h5>
-                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.address2}</span>
+                <span className='text-lg text-gray-500 dark:text-gray-400'>{user.address2 ?? 'Not Set'}</span>
               </div>
             </div>
 
@@ -154,8 +175,20 @@ const AdminUserProfilePage = ({ user }: UserPageProps) => {
             </div>
 
             <div className='mt-7 flex items-center justify-end gap-5'>
-              <button className='focus:shadow-outline rounded-full bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700 focus:outline-none'>
-                Edit
+              {editing && (
+                <button
+                  className='focus:shadow-outline rounded-full bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700 focus:outline-none'
+                  onClick={handleStatusChange}
+                >
+                  Submit
+                </button>
+              )}
+
+              <button
+                className='focus:shadow-outline rounded-full bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700 focus:outline-none'
+                onClick={() => setEditing((prev) => !prev)}
+              >
+                {editing ? 'Cancel' : 'Change Status'}
               </button>
 
               <button
