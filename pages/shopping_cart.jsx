@@ -4,8 +4,9 @@ import Footer from '../components/Footer';
 const Cart = () => {
   return (
     <div>
+      
       <ShoppingCart />
-      <Footer />
+      
     </div>
   );
 };

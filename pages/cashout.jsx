@@ -14,9 +14,11 @@ const CashOut = () => {
   const products = useStore((state) => state.items);
 
   const totalcost =products.map((product)=>({
-   total:((product.price)*(product.cartQuantity)*((product.discount)/100))
+
+   total:((product.price)*(product.cartQuantity)*(1-((product.discount)/100)))
 
   })).reduce((accumulator,object)=>{
+    
     return accumulator+object.total
   },0)
 
@@ -55,7 +57,9 @@ const CashOut = () => {
                   <div>  Price:{ product.price} $</div>
                   <div>  Quantity :{product.cartQuantity} </div>
                   <div>Discount:{ product.discount}%</div>
-                  <h1 className='font-bold' >Total:{(product.price*product.cartQuantity*(product.discount/100)).toFixed(2)} $</h1>
+
+                  <h1 className='font-bold' >Total:{(product.price*product.cartQuantity*(1-(product.discount/100))).toFixed(2)} $</h1>
+
                 </li>
                 
                 )}
