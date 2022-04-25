@@ -9,6 +9,7 @@ import useStore from '../../store/useStore';
 
 // Components
 import CartItem from './CartItem';
+import Link from 'next/link';
 
 const ShoppingCart = () => {
   const cartItems = useStore((state) => state.items);
@@ -23,7 +24,13 @@ const ShoppingCart = () => {
       <div className={styles.cart}>
         {cartItems.map((cartItem) => (
           <CartItem key={cartItem.id} item={cartItem} />
+
         ))}
+      </div>
+      <div className=' flex items-center justify-center pb-4'>
+        <Link  href={ {pathname:'/cashout'}} >
+      <button className="bg-amber-400 font-bold py-2 px-4  pb-3 rounded " > Proceed to CheckOut</button>
+      </Link>
       </div>
     </>
   );
