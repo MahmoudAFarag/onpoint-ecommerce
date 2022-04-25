@@ -26,7 +26,6 @@ const Header = () => {
           uid: user.uid,
           name: user.displayName as string,
           email: user.email as string,
-          role: 'user',
         });
       } else {
         setCurrentUser(null);
