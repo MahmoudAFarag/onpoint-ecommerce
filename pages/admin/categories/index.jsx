@@ -19,6 +19,8 @@ const Index = () => {
   const categoriesStore = useCreateCategoriesSlice();
   const [userMessage, setUserMessage] = useState({ show: false, message: "" });
   const router = useRouter();
+  const [filter, setFilter] = useState("");
+  const [filterdCategories, setFilterCategories] = useState([]);
 
   const checkAdmin = async () => {
     if (auth) {
@@ -54,6 +56,23 @@ const Index = () => {
     }
   };
 
+  const handleCategoriesFilter = (e) => {
+    const value = e.target.value.trim();
+    setFilter(value);
+
+    if (!value) {
+      setFilter("");
+      setFilterCategories(categoriesStore.value.categories);
+      return;
+    }
+
+    const filteredCategories = categoriesStore.value.categories.filter(
+      (category) => category.name.match(new RegExp(value, "i"))
+    );
+
+    setFilterCategories(filteredCategories);
+  };
+
   useEffect(() => {
     const unSub = checkAdmin();
 
@@ -67,7 +86,11 @@ const Index = () => {
     };
   }, [auth]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (!categoriesStore.value.loading) {
+      handleCategoriesFilter({ target: { value: filter } });
+    }
+  }, [categoriesStore]);
 
   if (categoriesStore.value.loading) return <SimpleMessage txt="Loading..." />;
   if (userMessage.show) return <SimpleMessage txt={userMessage.message} />;
@@ -80,8 +103,8 @@ const Index = () => {
         <input
           type="text"
           autoComplete="off"
-          value=""
-          onChange={() => {}}
+          value={filter}
+          onChange={handleCategoriesFilter}
           className="block w-full rounded bg-mystic p-2.5 py-2 px-2 text-mystic-dark outline-none"
           placeholder="Search"
         />
@@ -89,7 +112,7 @@ const Index = () => {
 
       <Add />
 
-      <List list={categoriesStore.value.categories} />
+      <List list={filterdCategories} />
     </main>
   );
 };
