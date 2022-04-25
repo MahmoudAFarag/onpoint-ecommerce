@@ -30,9 +30,7 @@ const CashOut = () => {
     
   }
   const handleChangeValue2=(e)=>{
-  
     setRadio(  null )
-
   }
   console.log(products)
   console.log(totalcost)
