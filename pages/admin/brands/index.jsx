@@ -96,8 +96,6 @@ const Index = () => {
 
   if (userMessage.show) return <SimpleMessage txt={userMessage.message} />;
 
-  console.log("Brands : ", brandsStore);
-
   return (
     <main className="container mx-auto py-6 px-9 lg:px-0">
       <h2 className="mb-6 text-2xl font-semibold text-shark">Brandss</h2>
@@ -122,9 +120,3 @@ const Index = () => {
 };
 
 export default Index;
-
-// Todo
-// 1- create brands snapshot [Done]
-// 2- create brands store [Done]
-// 3- finish search bar [Done]
-// 4- finish brands firebase crud functions [Done]

@@ -80,7 +80,6 @@ const Index = () => {
       unSub.then((unSubs) => {
         if (typeof unSubs === "function") {
           unSubs();
-          console.log("unSub");
         }
       });
     };
