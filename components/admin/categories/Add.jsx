@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 // Components
-import SimpleMessage from "../SimpleMessage";
+import SimpleMessage from "../../SimpleMessage";
 
 // Firebase
-import { addCategory } from "../../lib/categories";
+import { addCategory } from "../../../lib/categories";
 
 // Icons
 import { BsPlus } from "react-icons/bs";
@@ -51,8 +51,10 @@ const Add = () => {
     });
 
     setName("");
-    setUserMessage({ ...userMessage, show: false });
-    setShowForm(false);
+    if (add.done) {
+      setUserMessage({ ...userMessage, show: false });
+      setShowForm(false);
+    }
     setAdding(false);
   };
 

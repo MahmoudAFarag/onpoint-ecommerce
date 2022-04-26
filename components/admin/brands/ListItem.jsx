@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // Firebase
-import { updateCategory, deleteCategory } from "../../lib/categories";
+import { updateBrand } from "../../../lib/brands";
 
 // Icons
 import { AiFillEdit } from "react-icons/ai";
@@ -13,13 +13,13 @@ const ListItem = ({ id, name, handleDelete }) => {
   const [edit, setEdit] = useState(false);
   const [newName, setNewName] = useState(name);
 
-  const handleCategoryUpdate = async () => {
+  const handleBrandUpdate = async () => {
     setEdit(false);
     if (!newName.trim()) {
       setNewName(name);
       return;
     }
-    const update = await updateCategory(id, name, newName.trim());
+    const update = await updateBrand(id, name, newName.trim());
 
     // here should show message some how
   };
@@ -40,7 +40,7 @@ const ListItem = ({ id, name, handleDelete }) => {
 
             <button
               className="rounded bg-shark px-2 text-white hover:bg-shark-dark"
-              onClick={handleCategoryUpdate}
+              onClick={handleBrandUpdate}
             >
               <BsCheck />
             </button>
