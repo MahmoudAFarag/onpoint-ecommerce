@@ -18,7 +18,7 @@ const useCreateBrandsSlice = create((set) => ({
         return {
           value: {
             ...state.value,
-            brands: [...state.value.categories, brand],
+            brands: [...state.value.brands, brand],
           },
         };
       }
@@ -46,7 +46,7 @@ const useCreateBrandsSlice = create((set) => ({
 
       if (isExist !== -1) {
         const newValue = state.value.brands.filter(
-          (item) => item.id != category.id
+          (item) => item.id != brand.id
         );
 
         return { value: { ...state.value, brands: newValue } };
