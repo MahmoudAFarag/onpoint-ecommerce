@@ -2,8 +2,6 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 // Components
-import Add from "../../../components/categories/Add";
-import List from "../../../components/categories/List";
 import SimpleMessage from "../../../components/SimpleMessage";
 
 // Firebase
@@ -12,14 +10,84 @@ import brandsSnapshot from "../../../lib/brandsSnapshot";
 
 // State Management
 import useStore from "../../../store/useStore";
-import useCreateBrandSlice from "../../../store/useCreateBrandSlice";
+import useCreateBrandsSlice from "../../../store/createBrandsSlice";
 
 const Index = () => {
   const auth = useStore((state) => state.currentUser);
-  const brandsStore = useCreateBrandSlice();
+  const brandsStore = useCreateBrandsSlice();
   const [userMessage, setUserMessage] = useState({ show: false, message: "" });
   const router = useRouter();
-  return <div>Index</div>;
+  const [filter, setFilter] = useState("");
+  const [filterdBrands, setFilterBrands] = useState([]);
+
+  const checkAdmin = async () => {
+    if (auth) {
+      const isAdmin = await checkUserIsAdmin(auth.uid);
+
+      if (!isAdmin.done) {
+        router.push("/");
+        return;
+      }
+
+      if (isAdmin.done && !isAdmin.isAdmin) {
+        setUserMessage({
+          show: true,
+          message: "You are not authorized to view this page",
+        });
+      } else {
+        setUserMessage({
+          show: false,
+          message: "",
+        });
+
+        const unSub = brandsSnapshot(
+          brandsStore.add,
+          brandsStore.update,
+          brandsStore.delete,
+          brandsStore.finishLoading
+        );
+
+        return unSub;
+      }
+    } else {
+      setUserMessage({ show: true, message: "You are not logged in" });
+    }
+  };
+
+  const handleBrandsFilter = (e) => {
+    const value = e.target.value.trim();
+    setFilter(value);
+
+    if (!value) {
+      setFilter("");
+      setFilterBrands(brandsStore.value.brands);
+      return;
+    }
+
+    const filteredBrands = brandsStore.value.brands.filter((brand) =>
+      brand.name.match(new RegExp(value, "i"))
+    );
+
+    setFilterBrands(filteredBrands);
+  };
+
+  return (
+    <main className="container mx-auto py-6 px-9 lg:px-0">
+      <h2 className="mb-6 text-2xl font-semibold text-shark">Brands</h2>
+
+      <div className="mb-6">
+        <h4 className="font-medium text-shark">Search :</h4>
+        <input
+          type="text"
+          autoComplete="off"
+          value={filter}
+          onChange={handleBrandsFilter}
+          className="block w-full rounded bg-mystic p-2.5 py-2 px-2 text-mystic-dark outline-none"
+          placeholder="Search"
+        />
+      </div>
+    </main>
+  );
 };
 
 export default Index;
@@ -27,3 +95,4 @@ export default Index;
 // Todo
 // 1- create brands snapshot
 // 2- create brands store
+// 3- finish search bar
