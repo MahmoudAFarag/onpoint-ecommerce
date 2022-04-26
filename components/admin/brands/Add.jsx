@@ -51,8 +51,10 @@ const Add = () => {
     });
 
     setName("");
-    setUserMessage({ ...userMessage, show: false });
-    setShowForm(false);
+    if (add.done) {
+      setUserMessage({ ...userMessage, show: false });
+      setShowForm(false);
+    }
     setAdding(false);
   };
 
