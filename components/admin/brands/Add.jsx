@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 // Components
-import SimpleMessage from "../SimpleMessage";
+import SimpleMessage from "../../SimpleMessage";
 
 // Firebase
-import { addCategory } from "../../lib/categories";
+import { addBrand } from "../../../lib/brands";
 
 // Icons
 import { BsPlus } from "react-icons/bs";
@@ -22,7 +22,7 @@ const Add = () => {
   const [showForm, setShowForm] = useState(false);
   const [adding, setAdding] = useState(false);
 
-  const handleCategoryChange = (e) => {
+  const handleBrandChange = (e) => {
     setName(e.target.value);
 
     if (!e.target.value.trim()) {
@@ -33,7 +33,7 @@ const Add = () => {
     setDisabled(false);
   };
 
-  const handleAddCategory = async (e) => {
+  const handleAddBrand = async (e) => {
     e.preventDefault();
     setAdding(true);
 
@@ -43,7 +43,7 @@ const Add = () => {
       return;
     }
 
-    const add = await addCategory(name);
+    const add = await addBrand(name);
     setUserMessage({
       show: true,
       message: add.message,
@@ -74,6 +74,7 @@ const Add = () => {
         </button>
       </div>
     );
+
   return (
     <div className="mb-6 flex justify-end">
       <div className="relative">
@@ -96,12 +97,12 @@ const Add = () => {
             <IoIosClose className="h-6 w-6" />
           </button>
 
-          <form onSubmit={handleAddCategory}>
+          <form onSubmit={handleAddBrand}>
             <input
               type="text"
-              placeholder="Category name"
+              placeholder="Brand name"
               value={name}
-              onChange={handleCategoryChange}
+              onChange={handleBrandChange}
               className="rounded-l rounded-r-none px-3 py-2.5 focus-within:outline-none"
             />
 

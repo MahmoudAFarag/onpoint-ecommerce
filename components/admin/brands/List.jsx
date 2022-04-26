@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 // Components
-import SimpleMessage from "../SimpleMessage";
+import SimpleMessage from "../../SimpleMessage";
 import ListItem from "./ListItem";
 
 // Firebase
-import { deleteCategory } from "../../lib/categories";
+import { deleteCategory } from "../../../lib/categories";
 
 const List = ({ list }) => {
   const [deleting, setDeleting] = useState(false);

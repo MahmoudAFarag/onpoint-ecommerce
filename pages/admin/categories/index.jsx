@@ -2,8 +2,8 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 // Components
-import Add from "../../../components/categories/Add";
-import List from "../../../components/categories/List";
+import Add from "../../../components/admin/categories/Add";
+import List from "../../../components/admin/categories/List";
 import SimpleMessage from "../../../components/SimpleMessage";
 
 // Firebase

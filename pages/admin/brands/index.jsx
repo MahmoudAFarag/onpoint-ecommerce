@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 // Components
 import SimpleMessage from "../../../components/SimpleMessage";
+import Add from "../../../components/admin/brands/Add";
 
 // Firebase
 import checkUserIsAdmin from "../../../lib/checkUserIsAdmin";
@@ -99,6 +100,8 @@ const Index = () => {
           placeholder="Search"
         />
       </div>
+
+      <Add />
     </main>
   );
 };
