@@ -71,6 +71,19 @@ const Index = () => {
     setFilterBrands(filteredBrands);
   };
 
+  useEffect(() => {
+    const unSub = checkAdmin();
+
+    return () => {
+      unSub.then((unSubs) => {
+        if (typeof unSubs === "function") {
+          unSubs();
+          console.log("unSub");
+        }
+      });
+    };
+  }, [auth]);
+
   return (
     <main className="container mx-auto py-6 px-9 lg:px-0">
       <h2 className="mb-6 text-2xl font-semibold text-shark">Brands</h2>
@@ -93,6 +106,7 @@ const Index = () => {
 export default Index;
 
 // Todo
-// 1- create brands snapshot
-// 2- create brands store
-// 3- finish search bar
+// 1- create brands snapshot [Done]
+// 2- create brands store [Done]
+// 3- finish search bar [Done]
+// 4- finish brands firebase crud functions [Done]
