@@ -85,6 +85,16 @@ const Index = () => {
     };
   }, [auth]);
 
+  useEffect(() => {
+    if (!brandsStore.value.loading) {
+      handleBrandsFilter({ target: { value: filter } });
+    }
+  }, [brandsStore]);
+
+  if (brandsStore.value.loading) return <SimpleMessage txt="Loading..." />;
+
+  if (userMessage.show) return <SimpleMessage txt={userMessage.message} />;
+
   return (
     <main className="container mx-auto py-6 px-9 lg:px-0">
       <h2 className="mb-6 text-2xl font-semibold text-shark">Brands</h2>
