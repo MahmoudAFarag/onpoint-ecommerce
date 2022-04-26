@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 // Components
 import SimpleMessage from "../../../components/SimpleMessage";
 import Add from "../../../components/admin/brands/Add";
+import List from "../../../components/admin/brands/List";
 
 // Firebase
 import checkUserIsAdmin from "../../../lib/checkUserIsAdmin";
@@ -95,9 +96,11 @@ const Index = () => {
 
   if (userMessage.show) return <SimpleMessage txt={userMessage.message} />;
 
+  console.log("Brands : ", brandsStore);
+
   return (
     <main className="container mx-auto py-6 px-9 lg:px-0">
-      <h2 className="mb-6 text-2xl font-semibold text-shark">Brands</h2>
+      <h2 className="mb-6 text-2xl font-semibold text-shark">Brandss</h2>
 
       <div className="mb-6">
         <h4 className="font-medium text-shark">Search :</h4>
@@ -112,6 +115,8 @@ const Index = () => {
       </div>
 
       <Add />
+
+      <List list={filterdBrands} />
     </main>
   );
 };
