@@ -1,6 +1,9 @@
 import React from 'react';
+import addProduct from '../../lib/products'
 
 const AddProduct = () => {
+
+  const [product,setProduct]=useState([])
   return (
     <div>
       <h1 className='bg-white pb-4 font-bold '>Add Product</h1>
