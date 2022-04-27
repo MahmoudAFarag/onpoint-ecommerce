@@ -6,11 +6,12 @@ import Footer from '../components/Footer';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <div className='min-h-screen'>
       <Header />
       <Component {...pageProps} />
+
       <Footer />
-    </>
+    </div>
   );
 }
 

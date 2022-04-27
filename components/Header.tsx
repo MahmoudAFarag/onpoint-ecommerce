@@ -47,6 +47,7 @@ const Header = () => {
   return (
     <nav className={`${isOpen && 'mb-24'} rounded border-gray-200 bg-white px-2 py-2.5 shadow sm:px-4 md:mb-5`}>
       <div className='container mx-auto flex h-16 flex-wrap items-center justify-between'>
+        {/* brand name and hamburger menu (mobile) */}
         <div className='order-1 flex items-center'>
           <button
             data-collapse-toggle='mobile-menu'
@@ -80,6 +81,7 @@ const Header = () => {
           </Link>
         </div>
 
+        {/* search input */}
         <div className='order-2 block'>
           <form className='flex w-[40vw] items-center' onSubmit={handleSearchSubmit}>
             <FaSearch className='z-10 mr-[-30px]' fill='grey' />
@@ -98,6 +100,7 @@ const Header = () => {
           </form>
         </div>
 
+        {/* Auth (sign in/out) */}
         <div className={`order-4 ${isOpen ? 'block' : 'hidden'} w-full md:order-3 md:block md:w-auto`}>
           <ul className='mt-8 flex flex-col md:mt-0 md:flex-row md:space-x-8 md:text-base md:font-medium'>
             <li>
@@ -140,6 +143,7 @@ const Header = () => {
           </ul>
         </div>
 
+        {/* Shopping cart  */}
         <Link href='/shopping_cart'>
           <a className='relative order-3 mr-4 flex md:order-4'>
             <FaShoppingCart className='w-5 md:h-6 md:w-6' />
