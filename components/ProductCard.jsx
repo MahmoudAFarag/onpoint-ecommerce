@@ -4,23 +4,22 @@ import { shimmer, toBase64 } from '../lib/image_placeholder';
 
 const ProductCard = ({ product }) => {
   return (
-    <div className='flex max-w-md flex-col gap-5'>
-      <div className='relative min-h-[330px] min-w-full'>
-        <Image
-          src={product.image}
-          alt='product image'
-          layout='fill'
-          placeholder='blur'
-          blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(400, 300))}`}
-        />
+    <div className='group w-full p-5 shadow-md'>
+      <div className='aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8 w-full overflow-hidden rounded-lg bg-gray-200'>
+        <div className='relative h-[220px] w-full'>
+          <Image
+            src={product.image}
+            alt='product image'
+            layout='fill'
+            placeholder='blur'
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(400, 300))}`}
+          />
+        </div>
       </div>
-
-      <div className='px-3'>
-        <h3 className='text-xl'>{product.name}</h3>
-        <span className='text-sm'>{product.category}</span>
-      </div>
-      <div className='mb-3 flex items-center p-3'>
-        <h3 className='text-md mr-auto'>${product.price}</h3>
+      <h3 className='mt-4 text-base text-black'>{product.name}</h3>
+      <p className='mt-1 text-sm text-gray-500'>{product.category}</p>
+      <div className='mt-1 flex items-center'>
+        <p className='mr-auto text-lg font-medium text-gray-900'>${product.price}</p>
         <Link href={`/product/${product.id}`}>
           <a className='bg-amber-400 px-3 py-2'>More Details</a>
         </Link>
