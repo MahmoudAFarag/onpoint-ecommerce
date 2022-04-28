@@ -46,14 +46,14 @@ const Header = () => {
   };
 
   return (
-    <nav className={`${isOpen && 'mb-24'} rounded border-gray-200 bg-white px-2 py-2.5 shadow sm:px-4 md:mb-5`}>
-      <div className='container mx-auto flex h-16 flex-wrap items-center justify-between'>
+    <nav className={`${isOpen && 'mb-24'} h-16 rounded border-gray-200 bg-white py-4 shadow md:mb-5 md:h-20 md:p-4.5`}>
+      <div className='container mx-auto flex flex-wrap items-center justify-between'>
         {/* brand name and hamburger menu (mobile) */}
         <div className='order-1 flex items-center'>
           <button
             data-collapse-toggle='mobile-menu'
             type='button'
-            className='ml-3 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 focus:outline-none md:hidden'
+            className='mx-2 inline-flex items-center rounded-lg text-sm text-gray-500 focus:outline-none md:hidden'
             aria-controls='mobile-menu'
             aria-expanded='false'
             onClick={() => setOpen((prev) => !prev)}
@@ -71,16 +71,16 @@ const Header = () => {
 
         {/* search input */}
         <div className='order-2 block'>
-          <form className='flex w-[40vw] items-center' onSubmit={handleSearchSubmit}>
-            <FaSearch className='z-10 mr-[-30px]' fill='grey' />
+          <form className='ml-6 flex w-[50vw] items-center md:m-0 md:w-[40vw]' onSubmit={handleSearchSubmit}>
+            <FaSearch className='z-10 mr-[-25px] h-3 w-3 md:mr-[-30px] md:h-4 md:w-4' fill='grey' />
             <input
-              className='w-full appearance-none rounded border bg-gray-100 px-10 py-2 text-xs leading-tight text-gray-700 focus:outline-none md:w-full md:text-base'
+              className='w-full appearance-none rounded border bg-gray-100 px-10 py-1 text-xs leading-tight text-gray-700 focus:outline-none md:w-full md:py-2 md:text-base'
               type='search'
               placeholder='Search here...'
               aria-label='Search'
             />
             <button
-              className='ml-[-3px] bg-yellow-400 py-[0.35rem] px-1 text-sm md:ml-[-6px] md:py-[0.55rem] md:px-5 md:text-base'
+              className='ml-[-3px] hidden bg-yellow-400 py-[0.35rem] px-1 text-sm md:ml-[-6px] md:block md:py-[0.55rem] md:px-5 md:text-base'
               type='submit'
             >
               Search
@@ -90,11 +90,14 @@ const Header = () => {
 
         {/* Auth (sign in/out) */}
         <div className={`order-4 ${isOpen ? 'block' : 'hidden'} w-full md:order-3 md:block md:w-auto`}>
-          <ul className='mt-8 flex flex-col md:mt-0 md:flex-row md:space-x-8 md:text-base md:font-medium'>
+          <ul className='mt-4 flex flex-col md:m-0 md:flex-row md:space-x-8 md:text-base md:font-medium'>
             <li>
               {currentUser ? (
                 <Link href={`/profile/${currentUser.uid}`}>
-                  <a className='block rounded p-4 text-gray-700 md:bg-transparent md:p-0' aria-current='page'>
+                  <a
+                    className='block rounded p-4 text-sm text-gray-700 md:bg-transparent md:p-0 md:text-base'
+                    aria-current='page'
+                  >
                     {currentUser.name}
                   </a>
                 </Link>
@@ -105,7 +108,10 @@ const Header = () => {
                     query: { from: router.asPath },
                   }}
                 >
-                  <a className='block rounded p-4 text-gray-700 md:bg-transparent md:p-0' aria-current='page'>
+                  <a
+                    className='block rounded p-4 text-sm text-gray-700 md:bg-transparent md:p-0 md:text-base'
+                    aria-current='page'
+                  >
                     Sign In
                   </a>
                 </Link>
@@ -115,7 +121,7 @@ const Header = () => {
             <li>
               {currentUser ? (
                 <button
-                  className='block border-b border-gray-300 px-4 pb-3 text-gray-700 md:border-0 md:p-0'
+                  className='block border-b border-gray-300 px-4 pb-3 text-sm text-gray-700 md:border-0 md:p-0 md:text-base'
                   onClick={() => firebaseSignOut()}
                 >
                   Sign Out
@@ -129,7 +135,9 @@ const Header = () => {
                     },
                   }}
                 >
-                  <a className='block border-b border-gray-300 px-4 pb-3 text-gray-700 md:border-0 md:p-0'>Sign Up</a>
+                  <a className='block border-b border-gray-300 px-4 pb-3 text-sm text-gray-700 md:border-0 md:p-0 md:text-base'>
+                    Sign Up
+                  </a>
                 </Link>
               )}
             </li>
