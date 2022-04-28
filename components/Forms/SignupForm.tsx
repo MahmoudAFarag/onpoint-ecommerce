@@ -1,4 +1,4 @@
-import { useState, useRef, FormEvent } from 'react';
+import { useState, useRef, FormEvent, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 // Utilityes
@@ -21,6 +21,16 @@ const SignupForm = () => {
   const repasswordRef = useRef(null);
 
   const router = useRouter();
+
+  const urlRef = useRef<string>(router.asPath);
+
+  // check if current url is not login page to avoid urls such as /login?from=product/:id?from=product/:id   if clicked multiple times do not path router as the dependancy as it will create inifinite loops
+  useEffect(() => {
+    // shallow to update the url without reloading the page
+    router.push(urlRef.current, urlRef.current, { shallow: true });
+    // false positive explained in the comment above
+    // eslint-disable-next-line
+  }, [router.asPath]);
 
   const handleError = (message: string) => {
     setError(true);

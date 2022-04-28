@@ -18,14 +18,16 @@ const HomePage = ({ products }) => {
   };
 
   return (
-    <>
-      <div className='grid min-h-screen justify-items-center gap-12 p-8 md:grid-cols-2 lg:grid-cols-3'>
+    <div className='mx-auto max-w-xl px-4 pt-5 pb-5 lg:max-w-full lg:px-8 lg:pb-4'>
+      <h2 className='mb-5 text-2xl'>Latest Products</h2>
+
+      <div className='grid grid-cols-1 gap-y-12 gap-x-6 sm:grid-cols-2 lg:grid-cols-3'>
         {paginatedProducts.map((product) => {
           return <ProductCard key={product.id} product={product} />;
         })}
       </div>
       <Pagination itemsCount={products.length} pageSize={6} currentPage={currentPage} onPageChange={handlePageChange} />
-    </>
+    </div>
   );
 };
 
