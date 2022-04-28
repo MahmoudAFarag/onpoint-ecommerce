@@ -5,9 +5,11 @@ import { useRouter } from 'next/router';
 import { FaSearch, FaShoppingCart } from 'react-icons/fa';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import useStore from '../store/useStore';
+import useHasHydrated from '../lib/useHasHydrated';
 
 import { auth } from '../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import Spinner from './Spinner';
 
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
@@ -15,6 +17,7 @@ const Header = () => {
   const currentUser = useStore((state) => state.currentUser);
   const setCurrentUser = useStore((state) => state.setCurrentUser);
   const firebaseSignOut = useStore((state) => state.firebaseSignOut);
+  const hasHydrated = useHasHydrated();
 
   const router = useRouter();
 
@@ -45,21 +48,25 @@ const Header = () => {
     router.push(`/search/${searchInput.value}`);
   };
 
+  if (!hasHydrated) {
+    return <Spinner />;
+  }
+
   return (
-    <nav className={`${isOpen && 'mb-24'} h-16 rounded border-gray-200 bg-white py-4 shadow md:mb-5 md:h-20 md:p-4.5`}>
+    <nav className={`${isOpen && 'mb-24'} h-16 rounded border-gray-200 bg-white py-4 px-2 shadow md:mb-5 md:h-20 md:p-4.5`}>
       <div className='container mx-auto flex flex-wrap items-center justify-between'>
         {/* brand name and hamburger menu (mobile) */}
         <div className='order-1 flex items-center'>
           <button
             data-collapse-toggle='mobile-menu'
             type='button'
-            className='mx-2 inline-flex items-center rounded-lg text-sm text-gray-500 focus:outline-none md:hidden'
+            className='mx-2 inline-flex items-center rounded-lg text-sm focus:outline-none md:hidden'
             aria-controls='mobile-menu'
             aria-expanded='false'
             onClick={() => setOpen((prev) => !prev)}
           >
             <span className='sr-only'>Open main menu</span>
-            <GiHamburgerMenu className='h-5 w-5' />
+            <GiHamburgerMenu className='h-6 w-6 fill-gray-800' />
           </button>
 
           <Link href='/'>
@@ -71,7 +78,7 @@ const Header = () => {
 
         {/* search input */}
         <div className='order-2 block'>
-          <form className='ml-6 flex w-[50vw] items-center md:m-0 md:w-[40vw]' onSubmit={handleSearchSubmit}>
+          <form className='ml-6 flex w-[45vw] items-center md:m-0 md:w-[40vw]' onSubmit={handleSearchSubmit}>
             <FaSearch className='z-10 mr-[-25px] h-3 w-3 md:mr-[-30px] md:h-4 md:w-4' fill='grey' />
             <input
               className='w-full appearance-none rounded border bg-gray-100 px-10 py-1 text-xs leading-tight text-gray-700 focus:outline-none md:w-full md:py-2 md:text-base'

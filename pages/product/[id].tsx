@@ -3,10 +3,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useStore from '../../store/useStore';
 import { getProduct, getProducts } from '../../lib/products';
-import { ProductDoc,ProductCart } from '../../types/Product';
+import { ProductDoc, ProductCart } from '../../types/Product';
 import { shimmer, toBase64 } from '../../lib/image_placeholder';
 import AddToCartButton from '../../components/cart/AddToCartButton';
-
+import useHasHydrated from '../../lib/useHasHydrated';
+import Spinner from '../../components/Spinner';
 
 interface ProductProps {
   product: ProductCart;
@@ -15,10 +16,16 @@ interface ProductProps {
 const SingleProduct = ({ product }: ProductProps) => {
   const currentUser = useStore((state) => state.currentUser);
   const addItemToCart = useStore((state) => state.addItem);
-  const handleClick=()=>{
-   addItemToCart(product)
-   }
-   
+  const hasHydrated = useHasHydrated();
+
+  const handleClick = () => {
+    addItemToCart(product);
+  };
+
+  if (!hasHydrated) {
+    return <Spinner />;
+  }
+
   return (
     <>
       <div className='flex gap-7 p-9'>
@@ -40,9 +47,11 @@ const SingleProduct = ({ product }: ProductProps) => {
           <h2 className='text-xl'>About this item</h2>
           <p className='w-[80ch] text-base leading-7 text-gray-700'>{product.description}</p>
           <div className='mt-4 flex items-center justify-end gap-3'>
-            <Link href={'/cashout'}>
-           <button className='bg-amber-400  py-2 px-4 ' onClick={ handleClick }> Buy Now</button>
-           </Link>
+            <Link href={'/cashout'} passHref>
+              <button className='bg-amber-400  py-2 px-4 ' onClick={handleClick}>
+                Buy Now
+              </button>
+            </Link>
             <AddToCartButton product={product} />
           </div>
         </div>

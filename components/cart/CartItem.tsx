@@ -11,14 +11,13 @@ interface CartItemProps {
 }
 
 const CartItem = ({ item }: CartItemProps) => {
-  const [cartQuantity, setCartQuantity] = useState<number>(1);
+  const cartQuantity = useStore((state) => state.items.find((i) => i.id === item.id)?.cartQuantity);
   const removeItem = useStore((state) => state.removeItem);
   const increaseQuantity = useStore((state) => state.increaseQuantity);
   const decreaseQuantity = useStore((state) => state.decreaseQuantity);
 
   const handleIncreaseQuantity = () => {
     increaseQuantity(item);
-    setCartQuantity((prevState) => prevState + 1);
   };
 
   const handleDecreaseQuantity = () => {
@@ -27,8 +26,6 @@ const CartItem = ({ item }: CartItemProps) => {
     if (cartQuantity === 1) {
       return;
     }
-
-    setCartQuantity((prevState) => prevState - 1);
   };
 
   return (

@@ -1,5 +1,4 @@
 // Core imports
-import { useEffect } from 'react';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 
@@ -12,6 +11,7 @@ import { ProductDoc } from '../types/Product';
 
 interface HomeProps {
   products: ProductDoc[];
+  hasHydrated: boolean;
 }
 
 const Home = ({ products }: HomeProps) => {

@@ -3,7 +3,7 @@ const Spinner = () => {
     <div className='grid h-[80vh] place-items-center'>
       <svg
         role='status'
-        className='mr-2 w-20 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600'
+        className='mr-2 w-20 animate-spin fill-yellow-500 text-gray-200 dark:text-gray-600'
         viewBox='0 0 100 101'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'

@@ -6,7 +6,7 @@ const ProductCard = ({ product }) => {
   return (
     <div className='group w-full p-5 shadow-md'>
       <div className='aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8 w-full overflow-hidden rounded-lg bg-gray-200'>
-        <div className='relative h-[220px] w-full'>
+        <div className='relative h-[240px] w-full'>
           <Image
             src={product.image}
             alt='product image'
