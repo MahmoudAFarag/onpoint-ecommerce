@@ -4,7 +4,6 @@ import { ProductCart } from '../../types/Product';
 import styles from '../../styles/ShoppingCart.module.css';
 import { shimmer, toBase64 } from '../../lib/image_placeholder';
 import useStore from '../../store/useStore';
-import { useState } from 'react';
 
 interface CartItemProps {
   item: ProductCart;

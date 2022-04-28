@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      gridTemplateRows: {
+        '[auto,auto,1fr]': 'auto auto 1fr',
+      },
       width: {
         4.5: '1.125rem',
       },
