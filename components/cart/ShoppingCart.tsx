@@ -49,7 +49,7 @@ const ShoppingCart = () => {
         ))}
       </div>
 
-      <div className='mx-auto mt-4 flex w-full flex-col p-4 text-base shadow-md md:w-[85%] md:text-2xl'>
+      <div className='mx-auto mt-4 flex w-full flex-col p-4 text-base shadow-md md:w-[85%] md:p-8 md:text-2xl'>
         <h1 className='mb-4'>Order Summary</h1>
         <div className='flex flex-col gap-3 text-xs md:text-base'>
           <div className='flex border-b-2 pb-2'>
