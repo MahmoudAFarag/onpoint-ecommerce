@@ -22,27 +22,24 @@ const ShoppingCart = () => {
   }
 
   return (
-    <>
-      <div className={styles.header}>
-        <h1 className={styles.header__title}>ShoppingCart</h1>
-        {cartItems.length === 0 && <h4 className={styles.header__no_items}>No Items in Cart</h4>}
-      </div>
+    <div className='p-5'>
+      <h1 className='mb-4 text-xl'>ShoppingCart</h1>
+      {/* <div>{cartItems.length === 0 && <h4 className={styles.header__no_items}>No Items in Cart</h4>}</div> */}
 
-      <div className={styles.cart}>
+      <div className='flex flex-col gap-3'>
         {cartItems.map((cartItem) => (
           <CartItem key={cartItem.id} item={cartItem} />
         ))}
       </div>
-      {cartItems.length === 0 ? (
-        ''
-      ) : (
-        <div className=' flex items-center justify-center pb-4'>
-          <Link href={{ pathname: '/cashout' }} passHref>
-            <button className='rounded bg-amber-400 py-2 px-4  pb-3 font-bold '> Proceed to CheckOut</button>
+
+      {cartItems.length !== 0 && (
+        <div className='my-5 mx-auto w-max'>
+          <Link href='/cashout' passHref>
+            <button className='rounded bg-amber-400 py-2 px-4  pb-3 text-xs font-bold uppercase '> Proceed to CheckOut</button>
           </Link>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
