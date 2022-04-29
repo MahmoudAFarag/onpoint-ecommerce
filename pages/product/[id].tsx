@@ -5,7 +5,6 @@ import useStore from '../../store/useStore';
 import { getProduct, getProducts } from '../../lib/products';
 import { ProductDoc, ProductCart } from '../../types/Product';
 import { shimmer, toBase64 } from '../../lib/image_placeholder';
-import AddToCartButton from '../../components/cart/AddToCartButton';
 import useHasHydrated from '../../lib/useHasHydrated';
 import Spinner from '../../components/Spinner';
 
@@ -26,7 +25,7 @@ const SingleProduct = ({ product }: ProductProps) => {
   return (
     <>
       <div className='bg-white'>
-        <div className='flex flex-col pt-2'>
+        <div className='flex flex-col pt-2 md:p-4'>
           <div className='md:flex md:items-center md:justify-center md:gap-20'>
             <div className='aspect-w-3 aspect-h-4 block overflow-hidden rounded-lg p-6'>
               <div className='relative min-h-[320px] w-full object-cover object-center md:w-[500px]'>
@@ -42,13 +41,13 @@ const SingleProduct = ({ product }: ProductProps) => {
 
             <div className='max-w-2xl px-4 py-6 md:m-0 '>
               <div>
-                <h1 className='text-xl font-extrabold tracking-tight text-gray-900'>{product.name}</h1>
+                <h1 className='text-xl font-extrabold tracking-tight text-gray-900 md:text-3xl'>{product.name}</h1>
                 <p className='mt-3 text-base text-gray-500'>{product.category}</p>
               </div>
 
               <div className='mt-4 lg:row-span-3 lg:mt-0'>
                 <h2 className='sr-only'>Product information</h2>
-                <p className='text-2xl text-gray-900'>$192</p>
+                <p className='text-2xl text-gray-900 md:mt-2'>$192</p>
 
                 <div className='mt-6'>
                   <h3 className='sr-only'>Reviews</h3>
@@ -132,36 +131,36 @@ const SingleProduct = ({ product }: ProductProps) => {
             </div>
           </div>
 
-          <div className='mb-4 p-5 md:w-[100ch] md:p-8'>
+          <div className='mb-4 p-5 md:w-[110ch] md:p-8'>
             <div>
-              <h3 className='sr-only'>Description</h3>
+              <h3 className='mb-2 text-lg font-extrabold uppercase text-yellow-600 md:mb-4 md:text-2xl'>Description</h3>
 
-              <p className='text-sm leading-8 text-gray-900 md:text-base'>{product.description}</p>
+              <p className='text-xs leading-8 text-gray-900 md:text-lg'>{product.description}</p>
             </div>
 
             <div>
-              <h1 className='mt-6 mb-4 text-2xl font-extrabold text-yellow-600'>Reviews</h1>
+              <h1 className='mt-6 mb-4 text-lg font-extrabold uppercase text-yellow-600 md:text-2xl'>Reviews</h1>
               <div className='flex flex-col gap-4'>
                 {product.reviews?.map((review) => (
                   <div className='flex flex-col gap-1 border-b p-3' key={review.name}>
-                    <p className='text-sm font-bold md:text-base'>{review.name}</p>
-                    <p className='text-sm text-gray-700 md:text-base'>{review.review}</p>
+                    <p className='text-sm font-bold md:text-xl'>{review.name}</p>
+                    <p className='text-sm text-gray-700 md:text-lg'>{review.review}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className='mt-8'>
-              <h1 className='mb-5 text-2xl'>Tell us what you think</h1>
+              <h1 className='mb-5 text-lg font-extrabold uppercase md:text-2xl'>Tell us what you think</h1>
               {currentUser ? (
                 <form className='flex flex-col gap-4'>
-                  <label className='text-sm font-bold'>Name</label>
+                  <label className='text-sm font-bold md:text-lg'>Name</label>
                   <input className='h-[40px]  rounded-md border border-gray-300 p-2' type='text' />
-                  <label className='text-sm font-bold'>Review</label>
+                  <label className='text-sm font-bold md:text-lg'>Review</label>
                   <textarea className='h-[40px]  rounded-md border border-gray-300 p-2' />
                   <button
                     type='button'
-                    className='mt-10 w-52 rounded-md border border-transparent bg-gray-700 py-3 px-10 text-base font-medium text-white'
+                    className='mt-10 w-52 rounded-md border border-transparent bg-yellow-500 py-3 px-10 text-base font-bold text-black'
                   >
                     Submit Review
                   </button>
