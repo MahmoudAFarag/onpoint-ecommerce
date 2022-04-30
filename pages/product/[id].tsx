@@ -27,16 +27,15 @@ const SingleProduct = ({ product }: ProductProps) => {
       <div className='bg-white'>
         <div className='flex flex-col pt-2 md:p-4'>
           <div className='md:flex md:items-center md:justify-center md:gap-20'>
-            <div className='aspect-w-3 aspect-h-4 block overflow-hidden rounded-lg p-6'>
-              <div className='relative min-h-[320px] w-full object-cover object-center md:w-[500px]'>
-                <Image
-                  src={product.image}
-                  alt='Two each of gray, white, and black shirts laying flat.'
-                  layout='fill'
-                  placeholder='blur'
-                  blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(250, 250))}`}
-                />
-              </div>
+            <div className='aspect-w-3 aspect-h-4 relative block h-[250px] w-full overflow-hidden rounded-lg p-6 md:h-[350px] md:max-w-[50%]'>
+              <Image
+                src={product.image}
+                alt='Two each of gray, white, and black shirts laying flat.'
+                layout='fill'
+                objectFit='contain'
+                placeholder='blur'
+                blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(250, 250))}`}
+              />
             </div>
 
             <div className='max-w-2xl px-4 py-6 md:m-0 '>
