@@ -23,7 +23,6 @@ const SingleProduct = ({ product }: ProductProps) => {
     return <Spinner />;
   }
 
-  console.log(product.category, product)
 
   return (
     <>
