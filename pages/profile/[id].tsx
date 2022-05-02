@@ -6,6 +6,8 @@ import { shimmer, toBase64 } from '../../lib/image_placeholder';
 import { getUser } from '../../lib/users';
 import { User } from '../../types/User';
 
+import Head from "next/head";
+
 interface UserPageProps {
   user: User;
 }
@@ -20,6 +22,11 @@ const UserProfilePage = ({ user }: UserPageProps) => {
   }
 
   return (
+    <>
+    <Head>
+        <title>on point | Profile</title>
+        <meta name="description" content="on point user profile page" />
+      </Head>
     <div className='flex flex-col p-8'>
       <h1 className='mb-4 text-3xl'>User details:</h1>
       <div className='flex gap-4'>
@@ -111,6 +118,8 @@ const UserProfilePage = ({ user }: UserPageProps) => {
         </div>
       </div>
     </div>
+    </>
+
   );
 };
 
