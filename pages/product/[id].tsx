@@ -30,7 +30,7 @@ const SingleProduct = ({ product }: ProductProps) => {
             <div className='aspect-w-3 aspect-h-4 relative block h-[250px] w-full overflow-hidden rounded-lg p-6 md:h-[350px] md:max-w-[50%]'>
               <Image
                 src={product.image}
-                alt='Two each of gray, white, and black shirts laying flat.'
+                alt={product.name}
                 layout='fill'
                 objectFit='contain'
                 placeholder='blur'
