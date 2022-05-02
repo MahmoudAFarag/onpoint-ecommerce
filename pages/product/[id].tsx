@@ -1,6 +1,7 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import Head from 'next/head';
 import useStore from '../../store/useStore';
 import { getProduct, getProducts } from '../../lib/products';
 import { ProductDoc, ProductCart } from '../../types/Product';
@@ -22,8 +23,19 @@ const SingleProduct = ({ product }: ProductProps) => {
     return <Spinner />;
   }
 
+  console.log(product.category, product)
+
   return (
     <>
+      <Head>
+        <title>on point | {product.name}</title>
+        <meta name="description" content={product.description} />
+        <meta name='keywords' content={`${product.category}`} /> // we should add brand maybe we will add product keywords
+        <meta property="og:title" content={product.name} />
+        <meta property="og:description" content={product.description} />
+        <meta property="og:image" content={product.image} />
+        <meta property="og:url" content={`${process.env.NEXT_PUBLIC_DOMAIN_NAME}product/${product.id}`} />
+      </Head>
       <div className='bg-white'>
         <div className='flex flex-col pt-2 md:p-4'>
           <div className='md:flex md:items-center md:justify-center md:gap-20'>
