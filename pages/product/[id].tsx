@@ -1,4 +1,5 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
+import {useState} from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import useStore from '../../store/useStore';
@@ -17,6 +18,7 @@ const SingleProduct = ({ product }: ProductProps) => {
   const currentUser = useStore((state) => state.currentUser);
   const addItemToCart = useStore((state) => state.addItem);
   const hasHydrated = useHasHydrated();
+  const [reviewed ,setReviewed]=useState(false)
 
   if (!hasHydrated) {
     return <Spinner />;
@@ -46,7 +48,7 @@ const SingleProduct = ({ product }: ProductProps) => {
 
               <div className='mt-4 lg:row-span-3 lg:mt-0'>
                 <h2 className='sr-only'>Product information</h2>
-                <p className='text-2xl text-gray-900 md:mt-2'>$192</p>
+                <p className='text-2xl text-gray-900 md:mt-2'>${product.price}</p>
 
                 <div className='mt-6'>
                   <h3 className='sr-only'>Reviews</h3>
@@ -148,8 +150,8 @@ const SingleProduct = ({ product }: ProductProps) => {
                 ))}
               </div>
             </div>
-
-            <div className='mt-8'>
+            {reviewed?(<h1 className='mb-5 text-lg font-extrabold uppercase md:text-2xl pt-4'>Thank You!</h1>):( 
+            <div className='mt-8'> 
               <h1 className='mb-5 text-lg font-extrabold uppercase md:text-2xl'>Tell us what you think</h1>
               {currentUser ? (
                 <form className='flex flex-col gap-4'>
@@ -160,6 +162,7 @@ const SingleProduct = ({ product }: ProductProps) => {
                   <button
                     type='button'
                     className='mt-10 w-52 rounded-md border border-transparent bg-yellow-500 py-3 px-10 text-base font-bold text-black'
+                    onClick={()=>setReviewed(true)}
                   >
                     Submit Review
                   </button>
@@ -167,7 +170,8 @@ const SingleProduct = ({ product }: ProductProps) => {
               ) : (
                 <p className='h-10 w-full bg-slate-900 py-2 text-center text-white'>You need to sign in to be able to review</p>
               )}
-            </div>
+            </div>)}
+           
           </div>
         </div>
       </div>
