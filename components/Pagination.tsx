@@ -10,10 +10,10 @@ const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }: Paginat
   const pages = Array.from({ length: pageCount }, (_, i) => i + 1);
 
   return (
-    <div className='flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6'>
-      <div className='hidden sm:flex sm:flex-1 sm:items-center sm:justify-between'>
+    <div className='flex items-center justify-between border-t border-gray-200 bg-white px-4 pt-4 '>
+      <div className='flex flex-1 items-center justify-between'>
         <div>
-          <p className='text-sm text-gray-700'>
+          <p className='text-xs text-gray-700 md:text-sm'>
             Showing
             <span className='mx-1 font-medium'>{currentPage}</span>
             to
@@ -30,7 +30,7 @@ const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }: Paginat
                 <button
                   type='button'
                   {...(page === currentPage ? { 'aria-current': 'page' } : {})}
-                  className={`relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 ${
+                  className={`relative inline-flex items-center border border-gray-300 bg-white px-3 py-1 text-xs font-medium text-gray-500 md:px-4 md:py-2 md:text-base ${
                     page === currentPage ? 'z-10 border-gray-500 bg-amber-400 text-black hover:bg-amber-400' : ''
                   }`}
                   key={page}
