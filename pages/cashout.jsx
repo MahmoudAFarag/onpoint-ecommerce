@@ -5,6 +5,7 @@ import useStore from '../store/useStore';
 
 
 
+
 const CashOut = () => {
 
   const[radio,setRadio]=useState(null)
@@ -12,6 +13,7 @@ const CashOut = () => {
   
   const currentUser = useStore((state) => state.currentUser);
   const products = useStore((state) => state.items);
+  const emptyCart = useStore((state) => state.emptyCart);
 
   const totalcost =products.map((product)=>({
 
@@ -41,7 +43,7 @@ const CashOut = () => {
   return (
     <div>
       <div>
-        <div className="flex ">
+        <div className="grid grid-cols-1 gap-y-12 gap-x-6 sm:grid-cols-2 lg:grid-cols-2' ">
           <div>
             <h2>
               <strong>CheckOut</strong>
@@ -50,47 +52,28 @@ const CashOut = () => {
             <div>
               <h3> Applying Discount:</h3>
               <br></br>
-              <ul className="flex flex-col" >
+              <ul className="grid gap-4 grid-cols-3 pt-2" >
                 {products?.map((product)=>
-                <li key={product.name} className="pb-4" >
-                  <div>Category:{ product.category}</div>
+                <li key={product.name} className="pb-4 pl-1 pr-3 w-full border-double border-2 border-sky-900" >
+                  <div><img src={product.image} className={styles.avatar1} /></div>
                   <div>  Price:{ product.price} $</div>
-                  <div>  Quantity :{product.cartQuantity} </div>
+                  <div>  Quantity:{product.cartQuantity} </div>
                   <div>Discount:{ product.discount}%</div>
 
                   <h1 className='font-bold' >Total:{(product.price*product.cartQuantity*(1-(product.discount/100))).toFixed(2)} $</h1>
-
                 </li>
                 
                 )}
-              <div className='font-bold pb-4' >The Sum :{(totalcost).toFixed(2)}</div>
               </ul>
+              <div className='font-bold pb-4 pt-4' >The Sum :{(totalcost).toFixed(2)}$</div>
               <div className='font-bold pb-4' >shipping cost: {(products.length*5)}$</div>
-              <h1 className='h-10 w-full bg-slate-700 py-2 text-center text-white'>Total Cost:{(totalcost+(products.length*5)).toFixed(2)} $</h1>
+              <h1 className='h-15 w-full bg-slate-700 py-2 text-center text-white'>Total Cost:{(totalcost+(products.length*5)).toFixed(2)} $</h1>
             </div>
             <br></br>
             <div>
-              <div>
-                <span>
-                  {' '}
-                  <strong>Items To Deliver:</strong>
-                </span>
-              </div>
-
-              <div >
-                <ul className="flex">
-                  {products?.map((product)=>
-                  <li key ={product.name}>
-                <img src={product.image} className={styles.avatar1} />
-                
-                </li>
-                )}
-                </ul>
-               
-              </div>
               <Link href={'/shopping_cart'}>
-                <div className='pb-40 pl-4'>
-              <button className='bg-amber-400 font-bold py-2 px-4 rounded'>
+                <div className='flex items-center justify-center'>
+              <button className='rounded bg-amber-400 py-2 px-4 text-xs font-bold uppercase md:py-3 md:px-5 md:text-lg'>
                 {' '}
                 <span >Back To Cart</span>{' '}
               </button>
@@ -100,7 +83,7 @@ const CashOut = () => {
 
           </div>
 
-          <div className=" absolute  right-80 h-20 w-80">
+          <div className='my-4 mx-4 self-right'>
             <div>
               <div>
                 
@@ -117,7 +100,7 @@ const CashOut = () => {
                 ):(
                   <div>
                    <h2 className='pb-4'>DELIVERY ADDRESS:</h2>
-                  <p className='h-10 w-full bg-slate-700 py-2 text-center text-white'>You need to sign in to put your address</p>
+                  <p className='h-15 w-full bg-slate-700 py-0 text-center text-white'>You need to sign in to put your address</p>
                  </div>
                   )
               }
@@ -190,18 +173,23 @@ const CashOut = () => {
               ):""}
               
             {currentUser?
-              <div className='pt-4 pl-20'>
-                <Link href={'/thanksforpurchase'}>
-              <button className='bg-amber-400 font-bold py-2 px-4 rounded '>
-                
-                Confirm
-              </button>
-              </Link>
+              <div className='flex items-center justify-center '>
+      
+                    <Link href={'/thanksforpurchase'}>
+   
+                <button className='rounded bg-amber-400 py-2 px-2 text-xs font-bold uppercase md:py-3 md:px-5 md:text-lg '
+                   onClick={ ()=>emptyCart()}>     
+                  Confirm
+                </button>
+                </Link>
+            
+         
               </div>
+              
               : 
              
               <div className='pt-5 pb-20'>
-                  <p className='h-10 w-full bg-slate-700 py-2 text-center text-white'>You need to sign in to Confirm Payment</p>
+                  <p className='h-15 w-full bg-slate-700 py-2 text-center text-white'>You need to sign in to Confirm Payment</p>
                </div>
           
             }

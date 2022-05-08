@@ -10,6 +10,7 @@ export interface CartSlice {
   removeItem: (item: ProductCart) => void;
   increaseQuantity: (item: ProductCart) => void;
   decreaseQuantity: (item: ProductCart) => void;
+  emptyCart: () => void;
 }
 
 const createCartSlice = (set: SetState<MyState>, _get: GetState<MyState>) => {
@@ -75,6 +76,17 @@ const createCartSlice = (set: SetState<MyState>, _get: GetState<MyState>) => {
         false,
         // @ts-ignore
         'cart/decreaseQuantity'
+      ),
+      emptyCart: () =>
+      set(
+        produce((state: MyState) => {
+          state.cartTotal=0;
+          state.items=[]
+          
+        }),
+        false,
+        // @ts-ignore
+        'cart/emptyCart'
       ),
   };
 };
