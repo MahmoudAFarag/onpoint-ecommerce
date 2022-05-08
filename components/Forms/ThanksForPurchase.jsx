@@ -1,6 +1,9 @@
 import Link from 'next/link';
+import useStore from '../../store/useStore';
 
 const ThanksForPurchase =()=>{
+
+    
 
     return(
         <div>
@@ -10,7 +13,8 @@ const ThanksForPurchase =()=>{
                </div>
                    <div className=' flex items-center justify-center pb-16'>
                           <Link  href={ {pathname:'/'}} >
-                         <button className="bg-amber-400 font-bold py-2 px-4  pb-3 rounded " >Back To HomePage</button>
+                         <button className="bg-amber-400 font-bold py-2 px-4  pb-3 rounded "
+                         >Back To HomePage</button>
                          </Link>
                    </div>
         </div>
